@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>سالن مطالعه دخترانه ماراتن</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6d28d9;--p2:#db2777;--bg:#f5f3fb;--card:#fff;--tx:#1f1b2e;--mu:#6b6785;--bd:#e7e3f3;--ok:#059669;--wa:#d97706;--er:#dc2626;--r:18px;--soft:#f5f3ff;--soft2:#faf9fe}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--tx);font-size:14px;line-height:1.7;min-height:100vh}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer}
+.grad{background:linear-gradient(135deg,var(--p),var(--p2))}
+/* login */
+.login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#4c1d95,#be185d)}
+.lbox{background:var(--card);border-radius:24px;padding:34px 28px;width:100%;max-width:400px;box-shadow:0 30px 80px #0004}
+.logo{width:72px;height:72px;border-radius:22px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:36px;color:#fff}
+.lbox h1{text-align:center;font-size:20px;font-weight:800}
+.lbox p.s{text-align:center;color:var(--mu);margin-bottom:22px;font-size:13px}
+.inp{width:100%;padding:12px 14px;border:1.5px solid var(--bd);border-radius:12px;background:var(--card);outline:none;transition:.2s}
+.inp:focus{border-color:var(--p);box-shadow:0 0 0 3px #6d28d922}
+.btn{border:0;border-radius:12px;padding:10px 18px;font-weight:700;background:var(--p);color:#fff;transition:.2s}
+.btn:hover{filter:brightness(1.1)}
+.btn.g{background:var(--card);color:var(--p);border:1.5px solid var(--bd)}
+.btn.d{background:#fee2e2;color:var(--er)}
+.btn.sm{padding:5px 11px;font-size:12px;border-radius:9px}
+.btn.full{width:100%;padding:13px;margin-top:12px}
+.shake{animation:sh .4s}
+@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.err{color:var(--er);font-size:12.5px;text-align:center;margin-top:10px;min-height:18px}
+.hint{margin-top:18px;font-size:11.5px;color:var(--mu);text-align:center}
+.plist{max-height:300px;overflow:auto;display:grid;gap:8px;margin-top:10px}
+.pitem{padding:11px 14px;border:1.5px solid var(--bd);border-radius:12px;background:var(--card);text-align:right;display:flex;justify-content:space-between}
+.pitem:hover{border-color:var(--p);background:var(--soft)}
+/* shell */
+.shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+aside{background:var(--card);border-left:1px solid var(--bd);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px}
+.brand{display:flex;align-items:center;gap:10px;padding:4px 8px 16px;font-weight:800}
+.brand .logo{width:42px;height:42px;font-size:22px;border-radius:13px;margin:0;flex:none}
+.brand small{display:block;font-weight:400;color:var(--mu);font-size:11px}
+.ni{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:0;background:none;color:var(--mu);font-weight:500;text-align:right;width:100%}
+.ni:hover{background:var(--soft);color:var(--p)}
+.ni.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;font-weight:700}
+main{padding:22px 26px 90px;min-width:0}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+header.top h2{font-size:20px;font-weight:800}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--bd);border-radius:99px;padding:5px 13px;font-size:12.5px}
+.bn{display:none}
+/* cards */
+.grid{display:grid;gap:14px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:18px}
+.card h3{font-size:15px;margin-bottom:12px;font-weight:700}
+.stat{display:flex;gap:12px;align-items:center}
+.stat .ic{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--soft);flex:none}
+.stat b{display:block;font-size:22px;line-height:1.2}
+.stat span{color:var(--mu);font-size:12.5px}
+.tb{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
+.tb .inp{max-width:260px}
+.tw{overflow-x:auto;border:1px solid var(--bd);border-radius:var(--r);background:var(--card)}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th{background:var(--soft2);text-align:right;padding:11px 14px;font-size:12.5px;color:var(--mu);font-weight:700;white-space:nowrap}
+td{padding:11px 14px;border-top:1px solid var(--bd);white-space:nowrap}
+tr:hover td{background:var(--soft2)}
+.acts{display:flex;gap:5px}
+.bd{display:inline-block;padding:2px 11px;border-radius:99px;font-size:12px;font-weight:700}
+.bd.ok{background:#d1fae5;color:#047857}.bd.wa{background:#fef3c7;color:#b45309}.bd.er{background:#fee2e2;color:#b91c1c}.bd.in{background:#ede9fe;color:var(--p)}
+.empty{text-align:center;color:var(--mu);padding:30px}
+/* sub card */
+.hero{color:#fff;border-radius:22px;padding:24px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;left:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:#fff2}
+.hero h2{font-size:19px}
+.big{font-size:44px;font-weight:800;line-height:1.1;margin:10px 0 4px}
+.bar{height:10px;background:#fff4;border-radius:9px;overflow:hidden;margin-top:14px}
+.bar i{display:block;height:100%;background:#fff;border-radius:9px}
+.item{border:1px solid var(--bd);border-radius:14px;padding:14px 16px;background:var(--card);margin-bottom:10px}
+.item.imp{border-color:#f9a8d4;background:#fdf2f8}
+.item h4{font-size:14.5px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.item p{color:#4b4763;margin:5px 0;white-space:pre-wrap}
+.meta{color:var(--mu);font-size:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.task{display:flex;gap:12px;align-items:flex-start}
+.task input[type=checkbox]{width:20px;height:20px;margin-top:3px;accent-color:var(--p);flex:none}
+.task.done h4{text-decoration:line-through;color:var(--mu)}
+/* modal */
+#modal .ov{position:fixed;inset:0;background:#1f1b2e88;display:flex;align-items:center;justify-content:center;padding:16px;z-index:50;backdrop-filter:blur(3px)}
+.mb{background:var(--card);border-radius:20px;width:100%;max-width:520px;max-height:90vh;overflow:auto;padding:22px}
+.mb h3{font-size:17px;margin-bottom:14px}
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:12.5px;color:var(--mu);margin-bottom:4px;font-weight:500}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.jp{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:6px}
+.jp select{padding:10px 8px;border:1.5px solid var(--bd);border-radius:12px;background:var(--card)}
+.mf{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:6px 10px;margin-bottom:12px}
+.kv span{color:var(--mu)}
+.seg{display:flex;gap:6px}
+.seg button{border:1.5px solid var(--bd);background:var(--card);border-radius:10px;padding:5px 12px;font-size:12.5px}
+.seg .a-p{background:#d1fae5;border-color:#059669;color:#047857;font-weight:700}
+.seg .a-l{background:#fef3c7;border-color:#d97706;color:#b45309;font-weight:700}
+.seg .a-a{background:#fee2e2;border-color:#dc2626;color:#b91c1c;font-weight:700}
+#toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1f1b2e;color:#fff;padding:10px 20px;border-radius:12px;z-index:99;opacity:0;transition:.3s;pointer-events:none}
+#toast.on{opacity:1}
+@media(max-width:820px){
+ .shell{grid-template-columns:1fr}
+ aside{display:none}
+ main{padding:16px 14px 90px}
+ .bn{display:flex;position:fixed;bottom:0;right:0;left:0;background:var(--card);border-top:1px solid var(--bd);z-index:20;overflow-x:auto;padding:6px}
+ .bn button{flex:1;min-width:64px;border:0;background:none;display:flex;flex-direction:column;align-items:center;font-size:11px;color:var(--mu);padding:4px;border-radius:10px}
+ .bn button span{font-size:20px}
+ .bn button.on{color:var(--p);font-weight:700;background:var(--soft)}
+ .row2{grid-template-columns:1fr}
+}
+@media print{aside,.bn,.tb,.acts{display:none!important}.shell{display:block}}
+
+/* ===== v4 polish ===== */
+body{background-image:radial-gradient(900px 420px at 100% -10%,#6d28d912,transparent),radial-gradient(700px 360px at -10% 110%,#db27770f,transparent);background-attachment:fixed}
+::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:#8b7fd444;border-radius:9px}
+.card{box-shadow:0 1px 2px #1f1b2e08,0 12px 30px -20px #6d28d955;transition:transform .25s,box-shadow .25s}
+.stat:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px #6d28d977}
+.btn{background:linear-gradient(135deg,var(--p),#8b5cf6);box-shadow:0 8px 18px -10px #6d28d9bb}
+.btn.g,.btn.d{box-shadow:none}
+.btn:active{transform:scale(.97)}
+.btn.ic{padding:5px 11px;font-size:15px}
+.tw{box-shadow:0 12px 30px -24px #6d28d966}
+aside{overflow-y:auto}
+.me{display:flex;gap:10px;align-items:center;padding:10px;border-radius:14px;background:var(--soft);margin:6px 0}
+.me b{display:block;font-size:13px;line-height:1.4}.me small{display:block;color:var(--mu);font-size:11px}
+.av{width:36px;height:36px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex:none;font-size:14px}
+.nm{display:flex;align-items:center;gap:10px}.nm .av{width:30px;height:30px;font-size:12px;border-radius:10px}
+.fi{animation:fi .35s ease both}@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.login{position:relative;overflow:hidden}
+.login:before,.login:after{content:"";position:absolute;width:440px;height:440px;border-radius:50%;filter:blur(90px);opacity:.55;animation:fl 12s ease-in-out infinite alternate}
+.login:before{background:#f472b6;top:-120px;right:-100px}.login:after{background:#818cf8;bottom:-140px;left:-100px;animation-delay:-6s}
+@keyframes fl{to{transform:translate(40px,30px) scale(1.12)}}
+.lbox{position:relative;z-index:1;backdrop-filter:blur(8px)}
+.pwrap{position:relative}.eye{position:absolute;left:10px;top:50%;transform:translateY(-50%);border:0;background:none;font-size:16px;opacity:.6}
+.bars{display:flex;gap:8px;height:170px;align-items:stretch}
+.bc{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0}
+.bt{flex:1;width:100%;display:flex;align-items:flex-end;justify-content:center;min-height:0}
+.bt i{display:block;width:100%;max-width:38px;border-radius:9px 9px 4px 4px;background:linear-gradient(180deg,var(--p2),var(--p));min-height:3px;transition:height .6s}
+.bc em{font-style:normal;font-size:11px;color:var(--mu);margin-top:4px}.bv{font-size:10.5px;color:var(--mu);min-height:16px}
+.donut{width:150px;height:150px;border-radius:50%;position:relative;flex:none}
+.donut:after{content:"";position:absolute;inset:24px;background:var(--card);border-radius:50%}
+.donut b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;font-size:26px}
+.legend{display:grid;gap:8px}.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-left:8px}
+.ring{position:relative;width:240px;height:240px;margin:0 auto}.ring svg{transform:rotate(-90deg)}
+.ring .t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:48px;font-weight:800;font-variant-numeric:tabular-nums}
+.ring .t small{font-size:13px;color:var(--mu);font-weight:500}
+.chipr{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.chipr button,.chips button{border:1.5px solid var(--bd);background:var(--card);border-radius:99px;padding:5px 14px;font-size:12.5px}
+.chipr button.on{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-color:transparent}
+.medal{font-size:18px}
+/* AI */
+#ai .fab{position:fixed;left:18px;bottom:22px;width:58px;height:58px;border-radius:50%;border:0;font-size:26px;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2));box-shadow:0 12px 30px -6px #6d28d9bb;z-index:40;transition:.25s}
+#ai .fab:hover{transform:scale(1.08) rotate(-6deg)}
+#ai .pn{position:fixed;left:18px;bottom:92px;width:390px;max-width:calc(100vw - 24px);height:560px;max-height:calc(100vh - 120px);background:var(--card);border:1px solid var(--bd);border-radius:22px;box-shadow:0 30px 80px -20px #0007;display:none;flex-direction:column;overflow:hidden;z-index:41}
+#ai .pn.on{display:flex;animation:fi .25s}
+#ai .ph{display:flex;align-items:center;gap:10px;padding:14px 16px;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2))}
+#ai .ph b{display:block;font-size:15px;line-height:1.3}#ai .ph small{opacity:.9;font-size:11.5px}
+#ai .ph button{margin-right:auto;border:0;background:#fff3;color:#fff;border-radius:9px;padding:4px 9px;font-size:13px}
+#ai .ph button+button{margin-right:0}
+#aimsgs{flex:1;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:88%;padding:9px 13px;border-radius:16px;white-space:pre-wrap;line-height:1.9;font-size:13.5px;word-break:break-word}
+.m.u{align-self:flex-start;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border-bottom-right-radius:4px}
+.m.a{align-self:flex-end;background:var(--soft);border-bottom-left-radius:4px}
+.m .note{margin-top:6px;font-size:11.5px;color:var(--wa)}
+.dots i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--mu);margin:0 2px;animation:bn 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes bn{0%,80%,100%{transform:translateY(0);opacity:.4}40%{transform:translateY(-5px);opacity:1}}
+#ai .chips{display:flex;gap:6px;overflow-x:auto;padding:0 12px 8px;flex:none}
+#ai .chips button{white-space:nowrap}
+#ai form{display:flex;gap:8px;padding:10px 12px;border-top:1px solid var(--bd)}
+#ai form input{flex:1;padding:10px 14px;border:1.5px solid var(--bd);border-radius:99px;background:var(--card);outline:none}
+#ai form button{border:0;border-radius:50%;width:42px;height:42px;color:#fff;background:linear-gradient(135deg,var(--p),var(--p2));font-size:16px}
+@media(max-width:820px){#ai .fab{bottom:82px;left:14px;width:52px;height:52px;font-size:23px}#ai .pn{left:8px;right:8px;width:auto;max-width:none;bottom:76px;height:calc(100vh - 96px);max-height:none}}
+/* dark */
+[data-theme=dark]{--bg:#110f1d;--card:#1a1730;--tx:#ece9f8;--mu:#9a96b8;--bd:#2b2747;--soft:#252146;--soft2:#1f1c3a;--p:#8b5cf6;color-scheme:dark}
+[data-theme=dark] .bd.ok,[data-theme=dark] .seg .a-p{background:#064e3b;color:#6ee7b7;border-color:#059669}
+[data-theme=dark] .bd.wa,[data-theme=dark] .seg .a-l{background:#4a2f05;color:#fcd34d;border-color:#b45309}
+[data-theme=dark] .bd.er,[data-theme=dark] .seg .a-a,[data-theme=dark] .btn.d{background:#4c1219;color:#fca5a5;border-color:#b91c1c}
+[data-theme=dark] .bd.in{background:#2e2565;color:#c4b5fd}
+[data-theme=dark] .btn.g{color:#c4b5fd}
+[data-theme=dark] .item.imp{background:#33132a;border-color:#7a2a5c}
+[data-theme=dark] .item p{color:#cfcbe6}
+[data-theme=dark] .login{background:linear-gradient(135deg,#1e1145,#5b1139)}
+[data-theme=dark] .m.a{background:#252146}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="modal"></div>
+<div id="toast"></div>
+<div id="ai"></div>
+<script>
+/* ===== تنظیمات و ابزارها ===== */
+const KEY='marathon_hall_v2';
+const ROLE_NAME={admin:'مدیر',sup:'مراقب سالن',stu:'دانش‌آموز'};
+const $=s=>document.querySelector(s);
+const uid=()=>Math.random().toString(36).slice(2,9);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fa=n=>Number(n).toLocaleString('fa-IR',{useGrouping:false});
+const money=n=>Number(n).toLocaleString('fa-IR')+' تومان';
+const pad=n=>String(n).padStart(2,'0');
+function today(){const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+const D=i=>new Date(i+'T12:00:00Z');
+function addDays(i,n){const d=D(i);d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10)}
+function diff(a,b){return Math.round((D(b)-D(a))/864e5)}
+const jf=new Intl.DateTimeFormat('en-u-ca-persian-nu-latn',{year:'numeric',month:'numeric',day:'numeric',timeZone:'UTC'});
+function toJ(i){const p=jf.formatToParts(D(i));const g=t=>+p.find(x=>x.type===t||(t==='year'&&x.type==='relatedYear')).value;return{y:g('year'),m:g('month'),d:g('day')}}
+function jToIso(y,m,d){
+  const off=m<=6?(m-1)*31:186+(m-7)*30;
+  const base=Date.UTC(y+621,2,21,12)+(off+d-1)*864e5;
+  for(const k of [0,-1,1,-2,2]){
+    const c=new Date(base+k*864e5).toISOString().slice(0,10);const j=toJ(c);
+    if(j.y===y&&j.m===m&&j.d===d)return c;
+  }
+  return null;
+}
+const ff=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+const fw=new Intl.DateTimeFormat('fa-IR-u-ca-persian',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+const fmt=i=>i?ff.format(D(i)):'—';
+const fmtW=i=>fw.format(D(i));
+const MONTHS=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+function jpick(id,iso,onch){
+  const j=toJ(iso||today()),cy=toJ(today()).y;let y='',m='',d='';
+  for(let i=cy-2;i<=cy+4;i++)y+=`<option value="${i}" ${i==j.y?'selected':''}>${fa(i)}</option>`;
+  MONTHS.forEach((n,i)=>m+=`<option value="${i+1}" ${i+1==j.m?'selected':''}>${n}</option>`);
+  for(let i=1;i<=31;i++)d+=`<option value="${i}" ${i==j.d?'selected':''}>${fa(i)}</option>`;
+  const oc=onch?`onchange="${onch}"`:'';
+  return `<div class="jp" id="${id}"><select ${oc}>${d}</select><select ${oc}>${m}</select><select ${oc}>${y}</select></div>`;
+}
+function gj(id){const s=document.querySelectorAll('#'+id+' select');return jToIso(+s[2].value,+s[1].value,+s[0].value)}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2400)}
+const v=id=>document.getElementById(id).value;
+
+/* ===== داده‌ها ===== */
+function seed(){
+  const t=today();
+  const db={hall:'سالن مطالعه دخترانه ماراتن',students:[],tx:[],ann:[],tasks:[],att:{},admin:{pass:'1234'},sups:[{id:'p1',name:'مراقب سالن',pass:'1111'}]};
+  db.ann=[
+    {id:uid(),title:'ساعت کاری سالن',body:'سالن هر روز از ساعت ۷ صبح تا ۱۰ شب فعال است. لطفاً تا ۱۰ دقیقه پیش از تعطیلی وسایل خود را جمع کنید.',date:addDays(t,-3),author:'مدیر',imp:true},
+    {id:uid(),title:'رعایت سکوت',body:'لطفاً گوشی‌ها را روی حالت بی‌صدا نگه دارید و برای مکالمه از فضای بیرون سالن استفاده کنید.',date:addDays(t,-6),author:'مراقب سالن',imp:false},
+    {id:uid(),title:'آزمون آزمایشی پنج‌شنبه',body:'آزمون آزمایشی هفتگی پنج‌شنبه ساعت ۹ صبح برگزار می‌شود. حضور همه الزامی است.',date:addDays(t,-1),author:'مدیر',imp:false}];
+  return db;
+}
+function ensure(d){d.admin=d.admin||{pass:'1234'};d.sups=d.sups||[{id:'p1',name:'مراقب سالن',pass:'1111'}];['students','tx','ann','tasks'].forEach(k=>d[k]=d[k]||[]);d.att=d.att||{};d.study=d.study||{};d.log=d.log||[];d.aiUse=d.aiUse||{};d.hall=d.hall||'سالن مطالعه دخترانه ماراتن';return d}
+function load(){try{const s=localStorage.getItem(KEY);if(s)return ensure(JSON.parse(s))}catch(e){}const d=ensure(seed());try{localStorage.setItem(KEY,JSON.stringify(d))}catch(e){}return d}
+let DB=load();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){toast('خطا در ذخیره‌سازی')}}
+const stu=id=>DB.students.find(s=>s.id===id);
+function subInfo(s){
+  const left=diff(today(),s.end);
+  let cls='ok',txt='فعال';
+  if(left<0){cls='er';txt='منقضی'}else if(left<=7){cls='wa';txt='رو به پایان'}
+  return{left,cls,txt};
+}
+const leftTxt=l=>l<0?fa(-l)+' روز گذشته':l===0?'امروز':fa(l)+' روز مانده';
+
+/* ===== وضعیت و ورود ===== */
+let S={role:null,sid:null,uid:null,page:'dash',attDate:today()};
+try{const x=JSON.parse(sessionStorage.getItem('sess')||'null');if(x&&x.role){S.role=x.role;S.sid=x.sid;S.uid=x.uid;if(S.role==='stu'&&!stu(S.sid))S.role=null;if(S.role==='sup'&&!DB.sups.find(a=>a.id===S.uid))S.role=null}}catch(e){}
+function persist(){try{sessionStorage.setItem('sess',JSON.stringify({role:S.role,sid:S.sid,uid:S.uid}))}catch(e){}}
+function findUser(p){
+  if(!p)return null;
+  if(p===DB.admin.pass)return{role:'admin'};
+  const sp=DB.sups.find(x=>x.pass===p);if(sp)return{role:'sup',uid:sp.id,ref:sp};
+  const st=DB.students.find(x=>x.pass&&x.pass===p);if(st)return{role:'stu',sid:st.id,ref:st};
+  return null;
+}
+function login(e){
+  e.preventDefault();const u=findUser(v('pw').trim());
+  if(!u){$('#lerr').textContent='رمز عبور اشتباه است';const b=$('.lbox');b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');return}
+  S.role=u.role;S.sid=u.sid||null;S.uid=u.uid||null;S.page='dash';
+  if(u.ref)u.ref.last=Date.now();if(u.role!=='stu')logA('ورود به سیستم');save();
+  persist();render();
+}
+function logout(){clearInterval(FT.iv);FT.run=false;FT.left=FT.len*60;document.title='سالن مطالعه ماراتن';S.role=null;S.sid=null;S.uid=null;persist();render()}
+function go(p){S.page=p;S.anim=true;render();S.anim=false;window.scrollTo(0,0)}
+
+function loginView(){
+  return `<div class="login"><form class="lbox" onsubmit="login(event)"><div class="logo grad">📚</div><h1>${esc(DB.hall)}</h1><p class="s">برای ورود رمز عبور خود را وارد کنید</p>
+  <div class="pwrap"><input id="pw" class="inp" type="password" placeholder="رمز عبور" autofocus autocomplete="off" style="text-align:center;letter-spacing:4px;font-size:18px"><button type="button" class="eye" onclick="const i=document.getElementById('pw');i.type=i.type==='password'?'text':'password'">👁</button></div>
+  <div class="err" id="lerr"></div><button class="btn grad full" style="background:linear-gradient(135deg,var(--p),var(--p2))">ورود</button>
+  <div class="hint">مدیر، مراقبین و دانش‌آموزان هرکدام رمز مخصوص خود را دارند</div></form></div>`;
+}
+const curName=()=>S.role==='sup'?((DB.sups.find(x=>x.id===S.uid)||{}).name||'مراقب'):S.role==='stu'?((stu(S.sid)||{}).name||'دانش‌آموز'):ROLE_NAME[S.role];
+const fdt=t=>new Intl.DateTimeFormat('fa-IR-u-ca-persian',{dateStyle:'medium',timeStyle:'short'}).format(t);
+function genPass(id){let p;do{p=String(Math.floor(100000+Math.random()*900000))}while(passTaken(p));document.getElementById(id).value=p}
+function passTaken(p,kind,id){
+  if(kind!=='admin'&&p===DB.admin.pass)return true;
+  if(DB.sups.some(x=>x.pass===p&&!(kind==='sup'&&x.id===id)))return true;
+  if(DB.students.some(x=>x.pass&&x.pass===p&&!(kind==='stu'&&x.id===id)))return true;
+  return false;
+}
+function checkPass(p,kind,id){
+  if(p.length<4){toast('رمز باید حداقل ۴ کاراکتر باشد');return false}
+  if(passTaken(p,kind,id)){toast('این رمز قبلاً استفاده شده؛ رمز دیگری انتخاب کنید');return false}
+  return true;
+}
+const passField=(id,val,label)=>`<div class="fg"><label>${label}</label><div style="display:flex;gap:6px"><input id="${id}" class="inp" dir="ltr" autocomplete="off" value="${esc(val||'')}" placeholder="حداقل ۴ کاراکتر"><button type="button" class="btn g" style="white-space:nowrap" onclick="genPass('${id}')">🎲 تولید</button></div></div>`;
+
+/* ===== ناوبری ===== */
+const NAV={
+  admin:[['dash','🏠','داشبورد'],['students','👩‍🎓','دانش‌آموزان'],['tx','💳','تراکنش‌ها'],['ann','📢','اطلاعیه‌ها'],['tasks','📝','تکالیف'],['att','✅','حضور و غیاب'],['study','📈','گزارش مطالعه'],['sups','👮','مراقبین'],['log','🧾','گزارش فعالیت'],['settings','⚙️','تنظیمات']],
+  sup:[['dash','🏠','داشبورد'],['att','✅','حضور و غیاب'],['students','👩‍🎓','دانش‌آموزان'],['ann','📢','اطلاعیه‌ها'],['tasks','📝','تکالیف'],['study','📈','گزارش مطالعه']],
+  stu:[['dash','🏠','اشتراک من'],['focus','⏱️','تمرکز'],['ann','📢','اطلاعیه‌ها'],['tasks','📝','تکالیف'],['tx','💳','تراکنش‌ها'],['att','✅','حضور من']]
+};
+function render(){
+  const app=$('#app');
+  if(!S.role){app.innerHTML=loginView();return}
+  const nav=NAV[S.role];if(!nav.find(n=>n[0]===S.page))S.page='dash';
+  const cur=nav.find(n=>n[0]===S.page);
+  const who=S.role==='stu'?(stu(S.sid)||{}).name:curName();
+  app.innerHTML=`<div class="shell"><aside>
+    <div class="brand"><div class="logo grad">📚</div><div>${esc(DB.hall)}<small>${ROLE_NAME[S.role]}</small></div></div>
+    ${nav.map(n=>`<button class="ni ${n[0]===S.page?'on':''}" onclick="go('${n[0]}')"><span>${n[1]}</span>${n[2]}</button>`).join('')}
+    <div style="flex:1"></div><div class="me">${avatar(who)}<div><b>${esc(who)}</b><small>${ROLE_NAME[S.role]}</small></div></div><button class="ni" onclick="logout()"><span>🚪</span>خروج</button></aside>
+    <main><header class="top"><div><h2>${cur[1]} ${cur[2]}</h2><div class="meta" style="margin-top:2px">📅 ${fmtW(today())}</div></div><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="chip">👤 ${esc(who)}</span><button class="btn g sm ic" onclick="toggleTheme()" title="حالت شب و روز">🌓</button></div></header>
+    <section class="${S.anim?'fi':''}">${PAGES[S.page]()}</section></main></div>
+    <nav class="bn">${nav.map(n=>`<button class="${n[0]===S.page?'on':''}" onclick="go('${n[0]}')"><span>${n[1]}</span>${n[2]}</button>`).join('')}<button onclick="logout()"><span>🚪</span>خروج</button></nav>`;
+}
+
+/* ===== مودال ===== */
+function modal(title,body,ok,okText){
+  window._ok=ok;
+  $('#modal').innerHTML=`<div class="ov" onclick="if(event.target===this)closeModal()"><div class="mb"><h3>${title}</h3>${body}
+  <div class="mf"><button class="btn g" onclick="closeModal()">${ok?'انصراف':'بستن'}</button>${ok?`<button class="btn" onclick="if(window._ok()!==false)closeModal()">${okText||'ذخیره'}</button>`:''}</div></div></div>`;
+}
+function closeModal(){$('#modal').innerHTML=''}
+function confirmDo(msg,fn){modal('تأیید',`<p>${msg}</p>`,()=>{fn()},'بله، انجام شود')}
+
+/* ===== صفحات ===== */
+const PAGES={};
+const hasMoney=()=>S.role==='admin';
+
+PAGES.dash=()=>{
+  if(S.role==='stu')return studentDash();
+  const t=today(),st=DB.students;
+  const act=st.filter(s=>diff(t,s.end)>=0).length,soon=st.filter(s=>{const l=diff(t,s.end);return l>=0&&l<=7}).length,exp=st.length-act;
+  const inc=DB.tx.filter(x=>diff(x.date,t)<=30&&diff(x.date,t)>=0).reduce((a,x)=>a+x.amount,0);
+  const todayAtt=DB.att[t]||{},pres=Object.values(todayAtt).filter(x=>x==='present'||x==='late').length;
+  const watch=[...st].filter(s=>diff(t,s.end)<=7).sort((a,b)=>a.end.localeCompare(b.end));
+  const stat=(i,n,l)=>`<div class="card stat"><div class="ic">${i}</div><div><b>${n}</b><span>${l}</span></div></div>`;
+  return `<div class="grid g4" style="margin-bottom:14px">
+    ${stat('👩‍🎓',fa(st.length),'کل دانش‌آموزان')}${stat('🟢',fa(act),'اشتراک فعال')}${stat('⏳',fa(soon),'رو به پایان (۷ روز)')}${stat('🔴',fa(exp),'اشتراک منقضی')}
+    ${stat('🪑',fa(pres)+' / '+fa(st.length),'حاضر امروز')}${hasMoney()?stat('💰',money(inc),'درآمد ۳۰ روز اخیر'):''}</div>
+    <div class="grid g2"><div class="card"><h3>⚠️ اشتراک‌های نیازمند پیگیری</h3>
+    ${watch.length?`<div class="tw" style="border:0"><table style="min-width:0"><tbody>${watch.map(s=>{const i=subInfo(s);return `<tr><td><b>${esc(s.name)}</b></td><td>${fmt(s.end)}</td><td><span class="bd ${i.cls}">${leftTxt(i.left)}</span></td><td><button class="btn g sm" title="پیامک یادآوری" onclick="remind('${s.id}')">📩</button></td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty">همه اشتراک‌ها در وضعیت مناسب هستند 🎉</div>'}</div>
+    <div class="card"><h3>${hasMoney()?'💳 آخرین تراکنش‌ها':'📢 آخرین اطلاعیه‌ها'}</h3>
+    ${hasMoney()?`<div class="tw" style="border:0"><table style="min-width:0"><tbody>${[...DB.tx].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6).map(x=>`<tr><td>${esc((stu(x.sid)||{name:'—'}).name)}</td><td>${fmt(x.date)}</td><td><b>${money(x.amount)}</b></td></tr>`).join('')||'<tr><td class="empty">تراکنشی نیست</td></tr>'}</tbody></table></div>`
+    :[...DB.ann].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4).map(a=>`<div class="item"><h4>${esc(a.title)}</h4><div class="meta">${fmt(a.date)}</div></div>`).join('')||'<div class="empty">اطلاعیه‌ای نیست</div>'}</div></div>`;
+};
+
+function studentDash(){
+  const s=stu(S.sid);if(!s)return '';
+  const i=subInfo(s),total=Math.max(1,diff(s.start,s.end)),el=Math.min(total,Math.max(0,diff(s.start,today())));
+  const bg=i.cls==='ok'?'linear-gradient(135deg,#6d28d9,#db2777)':i.cls==='wa'?'linear-gradient(135deg,#d97706,#dc2626)':'linear-gradient(135deg,#991b1b,#4b5563)';
+  const tasks=myTasks(s.id).filter(t=>!t.done[s.id]).length;
+  const lastTx=[...DB.tx].filter(x=>x.sid===s.id).sort((a,b)=>b.date.localeCompare(a.date))[0];
+  return `<div class="hero" style="background:${bg}"><h2>سلام ${esc(s.name)} 👋</h2>
+    <div style="opacity:.85">میز شماره ${fa(s.seat)} · پایه ${esc(s.grade)}</div>
+    <div class="big">${i.left<0?'منقضی شده':i.left===0?'امروز آخرین روز':fa(i.left)+' روز'}</div>
+    <div style="opacity:.9">${i.left>=0?'تا پایان اشتراک':'اشتراک شما '+fa(-i.left)+' روز پیش تمام شد'}</div>
+    <div class="bar"><i style="width:${i.left<0?100:Math.round(el/total*100)}%"></i></div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12.5px;opacity:.9"><span>شروع: ${fmt(s.start)}</span><span>پایان: ${fmt(s.end)}</span></div></div>
+    ${i.left<=7?`<div class="card" style="margin-top:14px;border-color:#fcd34d;background:#fffbeb;color:#78350f">${i.left<0?'⛔ اشتراک شما منقضی شده است. برای تمدید به مدیر سالن مراجعه کنید.':'⏰ اشتراک شما رو به پایان است. لطفاً برای تمدید اقدام کنید.'}</div>`:''}
+    <div class="grid g4" style="margin-top:14px">
+      <div class="card stat" onclick="go('tasks')" style="cursor:pointer"><div class="ic">📝</div><div><b>${fa(tasks)}</b><span>تکلیف انجام‌نشده</span></div></div>
+      <div class="card stat" onclick="go('ann')" style="cursor:pointer"><div class="ic">📢</div><div><b>${fa(DB.ann.length)}</b><span>اطلاعیه</span></div></div>
+      <div class="card stat" onclick="go('tx')" style="cursor:pointer"><div class="ic">💳</div><div><b style="font-size:15px">${lastTx?fmt(lastTx.date):'—'}</b><span>آخرین پرداخت</span></div></div></div>`;
+}
+
+/* دانش‌آموزان */
+PAGES.students=()=>`<div class="tb"><input class="inp" placeholder="🔍 جستجو نام، تلفن یا شماره میز" oninput="S.q=this.value;stRows()"><select class="inp" style="max-width:170px" onchange="S.sf=this.value;stRows()"><option value="">همه وضعیت‌ها</option><option value="ok">فعال</option><option value="wa">رو به پایان</option><option value="er">منقضی</option></select>
+  <div style="flex:1"></div><button class="btn g" onclick="exportStudents()">⬇️ خروجی اکسل</button><button class="btn" onclick="stuForm()">➕ دانش‌آموز جدید</button></div>
+  <div class="tw"><table><thead><tr><th>میز</th><th>نام</th><th>پایه</th><th>تلفن</th><th>پایان اشتراک</th><th>وضعیت</th><th></th></tr></thead><tbody id="stb"></tbody></table></div>`;
+S.q='';S.sf='';
+function stRows(){
+  const q=(S.q||'').trim(),rows=DB.students.filter(s=>(!q||(s.name+s.phone+s.seat).includes(q))&&(!S.sf||subInfo(s).cls===S.sf)).sort((a,b)=>a.seat-b.seat);
+  const el=$('#stb');if(!el)return;
+  el.innerHTML=rows.map(s=>{const i=subInfo(s);return `<tr><td>${fa(s.seat)}</td><td><div class="nm">${avatar(s.name)}<b>${esc(s.name)}</b></div></td><td>${esc(s.grade)}</td><td dir="ltr" style="text-align:right">${esc(s.phone)}</td><td>${fmt(s.end)}</td><td><span class="bd ${i.cls}">${i.txt} · ${leftTxt(i.left)}</span></td>
+  <td><div class="acts"><button class="btn g sm" onclick="stuDetail('${s.id}')">جزئیات</button>${hasMoney()?`<button class="btn sm" onclick="txForm('${s.id}',30)">تمدید</button>`:''}<button class="btn g sm" onclick="stuForm('${s.id}')">ویرایش</button><button class="btn d sm" onclick="stuDel('${s.id}')">حذف</button></div></td></tr>`}).join('')||'<tr><td colspan="7" class="empty">موردی یافت نشد</td></tr>';
+}
+function stuForm(id){
+  const s=id?stu(id):{name:'',phone:'',grade:'دهم',seat:(Math.max(0,...DB.students.map(x=>x.seat))+1),start:today(),end:addDays(today(),30),pass:''};
+  const pay=S.role==='admin'&&!id;
+  modal(id?'ویرایش دانش‌آموز':'دانش‌آموز جدید',`<div class="fg"><label>نام و نام خانوادگی</label><input id="f1" class="inp" value="${esc(s.name)}"></div>
+  <div class="row2"><div class="fg"><label>تلفن</label><input id="f2" class="inp" inputmode="tel" value="${esc(s.phone)}"></div><div class="fg"><label>شماره میز</label><input id="f3" type="number" class="inp" value="${s.seat}"></div></div>
+  <div class="fg"><label>پایه تحصیلی</label><select id="f4" class="inp">${['هفتم','هشتم','نهم','دهم','یازدهم','دوازدهم','فارغ‌التحصیل'].map(g=>`<option ${g===s.grade?'selected':''}>${g}</option>`).join('')}</select></div>
+  ${passField('f7',s.pass,'رمز ورود دانش‌آموز')}
+  <div class="fg"><label>شروع اشتراک</label>${jpick('fs',s.start)}</div><div class="fg"><label>پایان اشتراک</label>${jpick('fe',s.end)}</div>
+  ${pay?'<div class="fg"><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="f5" checked> ثبت تراکنش ثبت‌نام</label></div><div class="fg"><label>مبلغ (تومان)</label><input id="f6" type="number" class="inp" value="1800000"></div>':''}`,()=>{
+    const name=v('f1').trim(),start=gj('fs'),end=gj('fe'),pass=v('f7').trim();
+    if(!name){toast('نام را وارد کنید');return false}
+    if(!start||!end){toast('تاریخ نامعتبر است');return false}
+    if(!checkPass(pass,'stu',id))return false;
+    const o={name,phone:v('f2').trim(),seat:+v('f3')||0,grade:v('f4'),start,end,pass};logA((id?'ویرایش':'افزودن')+' دانش‌آموز: '+name);
+    if(id)Object.assign(s,o);else{o.id='s'+uid();DB.students.push(o);
+      if(pay&&$('#f5').checked&&+v('f6')>0)DB.tx.push({id:uid(),sid:o.id,date:today(),amount:+v('f6'),type:'ثبت‌نام / تمدید',method:'نقدی',desc:'ثبت‌نام اولیه',days:Math.max(0,diff(start,end))})}
+    save();render();toast('ذخیره شد');
+  });
+}
+function stuDel(id){confirmDo('این دانش‌آموز و تمام سوابق او حذف شود؟',()=>{logA('حذف دانش‌آموز: '+(stu(id)||{}).name);DB.students=DB.students.filter(s=>s.id!==id);DB.tx=DB.tx.filter(x=>x.sid!==id);DB.tasks=DB.tasks.filter(t=>t.sid!==id);DB.tasks.forEach(t=>delete t.done[id]);Object.keys(DB.att).forEach(d=>delete DB.att[d][id]);save();render();toast('حذف شد')})}
+function stuDetail(id){
+  const s=stu(id),i=subInfo(s);
+  let h=`<div class="kv"><span>نام</span><b>${esc(s.name)}</b><span>تلفن</span><b dir="ltr" style="text-align:right">${esc(s.phone)}</b><span>پایه</span><b>${esc(s.grade)}</b><span>میز</span><b>${fa(s.seat)}</b><span>رمز ورود</span><b dir="ltr" style="text-align:right">${esc(s.pass||'—')}</b><span>آخرین ورود</span><b>${s.last?fdt(s.last):'—'}</b><span>شروع</span><b>${fmt(s.start)}</b><span>پایان</span><b>${fmt(s.end)}</b><span>وضعیت</span><b><span class="bd ${i.cls}">${i.txt} · ${leftTxt(i.left)}</span></b></div>`;
+  const days=Object.keys(DB.att).filter(d=>DB.att[d][id]);const c=k=>days.filter(d=>DB.att[d][id]===k).length;
+  h+=`<div class="meta" style="margin-bottom:10px">حضور: ${fa(c('present'))} · تأخیر: ${fa(c('late'))} · غیبت: ${fa(c('absent'))}</div>`;
+  if(hasMoney()){const t=DB.tx.filter(x=>x.sid===id).sort((a,b)=>b.date.localeCompare(a.date));
+    h+=`<h3 style="font-size:14px">تراکنش‌ها</h3>`+(t.length?t.map(x=>`<div class="item" style="padding:9px 12px;margin-bottom:6px"><div style="display:flex;justify-content:space-between"><b>${money(x.amount)}</b><span class="meta">${fmt(x.date)}</span></div><div class="meta">${esc(x.type)} · ${esc(x.method)}</div></div>`).join(''):'<div class="empty">تراکنشی ثبت نشده</div>')}
+  modal('پرونده '+esc(s.name),h);
+}
+
+/* تراکنش‌ها */
+function txForm(sid,days){
+  modal('ثبت تراکنش'+(days?' و تمدید اشتراک':''),`<div class="fg"><label>دانش‌آموز</label><select id="t1" class="inp">${DB.students.map(s=>`<option value="${s.id}" ${s.id===sid?'selected':''}>${esc(s.name)}</option>`).join('')}</select></div>
+  <div class="row2"><div class="fg"><label>مبلغ (تومان)</label><input id="t2" type="number" class="inp" value="${days?1800000:''}"></div>
+  <div class="fg"><label>نوع</label><select id="t3" class="inp"><option>ثبت‌نام / تمدید</option><option>شهریه</option><option>بازگشت وجه</option><option>سایر</option></select></div></div>
+  <div class="row2"><div class="fg"><label>روش پرداخت</label><select id="t4" class="inp"><option>کارت به کارت</option><option>نقدی</option><option>کارتخوان</option><option>آنلاین</option></select></div>
+  <div class="fg"><label>تعداد روز تمدید (۰ = بدون تمدید)</label><input id="t5" type="number" min="0" class="inp" value="${days||0}"></div></div>
+  <div class="fg"><label>تاریخ پرداخت</label>${jpick('td',S.txv==='day'&&S.role==='admin'?S.txDate:today())}</div>
+  <div class="fg"><label>توضیحات</label><input id="t6" class="inp" placeholder="اختیاری"></div>`,()=>{
+    const amount=+v('t2'),date=gj('td'),dd=+v('t5')||0,id=v('t1');
+    if(!amount&&!dd){toast('مبلغ را وارد کنید');return false}
+    if(!date){toast('تاریخ نامعتبر است');return false}
+    logA('ثبت تراکنش '+money(amount)+' برای '+(stu(id)||{}).name);DB.tx.push({id:uid(),sid:id,date,amount:v('t3')==='بازگشت وجه'?-Math.abs(amount):amount,type:v('t3'),method:v('t4'),desc:v('t6'),days:dd});
+    if(dd>0){const s=stu(id),expired=diff(today(),s.end)<0;
+      if(expired)s.start=today();
+      s.end=addDays(expired?today():s.end,dd)}
+    save();render();if($('#stb'))stRows();toast('تراکنش ثبت شد');
+  });
+}
+S.txv='all';S.txDate=today();
+function setTxDate(){const d=gj('xd');if(d){S.txDate=d;render()}}
+PAGES.tx=()=>{
+  const stuMode=S.role==='stu';
+  const head=`<thead><tr><th>تاریخ</th>${stuMode?'':'<th>دانش‌آموز</th>'}<th>نوع</th><th>مبلغ</th><th>روش</th><th>تمدید</th><th>توضیحات</th>${stuMode?'':'<th></th>'}</tr></thead>`;
+  const row=x=>`<tr><td>${fmt(x.date)}</td>${stuMode?'':`<td>${esc((stu(x.sid)||{name:'(حذف‌شده)'}).name)}</td>`}<td><span class="bd in">${esc(x.type)}</span></td><td><b style="color:${x.amount<0?'var(--er)':'var(--ok)'}">${money(x.amount)}</b></td><td>${esc(x.method)}</td><td>${x.days?fa(x.days)+' روز':'—'}</td><td>${esc(x.desc)||'—'}</td>${stuMode?'':`<td><div class="acts"><button class="btn g sm" onclick="printReceipt('${x.id}')">🧾 رسید</button><button class="btn d sm" onclick="txDel('${x.id}')">حذف</button></div></td>`}</tr>`;
+  const tabs=stuMode?'':`<div class="seg" style="margin-bottom:14px"><button class="${S.txv==='all'?'a-p':''}" onclick="S.txv='all';render()">همه تراکنش‌ها</button><button class="${S.txv==='day'?'a-p':''}" onclick="S.txv='day';render()">📆 تراکنش‌های روزانه</button></div>`;
+  if(!stuMode&&S.txv==='day'){
+    const d=S.txDate,list=DB.tx.filter(x=>x.date===d);
+    const inc=list.filter(x=>x.amount>0).reduce((a,x)=>a+x.amount,0),ref=list.filter(x=>x.amount<0).reduce((a,x)=>a+x.amount,0);
+    const days={};DB.tx.forEach(x=>{const o=days[x.date]=days[x.date]||{n:0,s:0};o.n++;o.s+=x.amount});
+    const keys=Object.keys(days).sort().reverse().slice(0,31);
+    const stat=(i,n,l)=>`<div class="card stat"><div class="ic">${i}</div><div><b style="font-size:17px">${n}</b><span>${l}</span></div></div>`;
+    return tabs+`<div class="tb"><div style="min-width:280px">${jpick('xd',d,'setTxDate()')}</div><button class="btn g" onclick="S.txDate=today();render()">امروز</button><div style="flex:1"></div><button class="btn g" onclick="exportTx()">⬇️ خروجی اکسل</button><button class="btn" onclick="txForm()">➕ ثبت تراکنش</button></div>
+    <div class="card" style="margin-bottom:12px"><b>${fmtW(d)}</b></div>
+    <div class="grid g4" style="margin-bottom:14px">${stat('🧾',fa(list.length),'تعداد تراکنش')}${stat('💰',money(inc),'دریافتی')}${stat('↩️',money(-ref),'بازگشت وجه')}${stat('📊',money(inc+ref),'مجموع خالص روز')}</div>
+    <div class="tw" style="margin-bottom:18px"><table>${head}<tbody>${list.map(row).join('')||'<tr><td colspan="8" class="empty">در این روز تراکنشی ثبت نشده است</td></tr>'}</tbody></table></div>
+    <div class="card"><h3>📅 خلاصه روزها (آخرین ۳۱ روز دارای تراکنش)</h3><div class="tw" style="border:0"><table style="min-width:0"><thead><tr><th>تاریخ</th><th>تعداد</th><th>مجموع خالص</th></tr></thead><tbody>${keys.map(k=>`<tr style="cursor:pointer" onclick="S.txDate='${k}';render();window.scrollTo(0,0)"><td>${fmtW(k)}${k===d?' ✔️':''}</td><td>${fa(days[k].n)}</td><td><b>${money(days[k].s)}</b></td></tr>`).join('')||'<tr><td colspan="3" class="empty">هنوز تراکنشی ثبت نشده</td></tr>'}</tbody></table></div></div>`;
+  }
+  const list=[...DB.tx].filter(x=>stuMode?x.sid===S.sid:(!S.tf||x.sid===S.tf)).sort((a,b)=>b.date.localeCompare(a.date));
+  const sum=list.reduce((a,x)=>a+x.amount,0);
+  return tabs+`<div class="tb">${stuMode?'':`<select class="inp" style="max-width:240px" onchange="S.tf=this.value;go('tx')"><option value="">همه دانش‌آموزان</option>${DB.students.map(s=>`<option value="${s.id}" ${S.tf===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select><div style="flex:1"></div><button class="btn g" onclick="exportTx()">⬇️ خروجی اکسل</button><button class="btn" onclick="txForm()">➕ ثبت تراکنش</button>`}</div>
+  <div class="card" style="margin-bottom:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><span>تعداد تراکنش: <b>${fa(list.length)}</b></span><span>مجموع: <b>${money(sum)}</b></span></div>
+  <div class="tw"><table>${head}<tbody>${list.map(row).join('')||'<tr><td colspan="8" class="empty">تراکنشی ثبت نشده است</td></tr>'}</tbody></table></div>`;
+};
+function txDel(id){confirmDo('این تراکنش حذف شود؟ (تاریخ اشتراک تغییر نمی‌کند)',()=>{logA('حذف تراکنش');DB.tx=DB.tx.filter(x=>x.id!==id);save();render()})}
+
+/* اطلاعیه‌ها */
+PAGES.ann=()=>{
+  const can=S.role!=='stu',list=[...DB.ann].sort((a,b)=>(b.imp-a.imp)||b.date.localeCompare(a.date));
+  return `${can?'<div class="tb"><button class="btn" onclick="annForm()">➕ اطلاعیه جدید</button></div>':''}
+  ${list.map(a=>`<div class="item ${a.imp?'imp':''}"><h4><span>${a.imp?'📌 ':''}${esc(a.title)}</span>${can?`<span class="acts"><button class="btn g sm" onclick="annForm('${a.id}')">ویرایش</button><button class="btn d sm" onclick="annDel('${a.id}')">حذف</button></span>`:''}</h4><p>${esc(a.body)}</p><div class="meta"><span>📅 ${fmt(a.date)}</span><span>✍️ ${esc(a.author)}</span></div></div>`).join('')||'<div class="empty card">اطلاعیه‌ای وجود ندارد</div>'}`;
+};
+function annForm(id){
+  const a=id?DB.ann.find(x=>x.id===id):{title:'',body:'',imp:false};
+  modal(id?'ویرایش اطلاعیه':'اطلاعیه جدید',`<div class="fg"><label>عنوان</label><input id="a1" class="inp" value="${esc(a.title)}"></div><div class="fg"><label>متن</label><textarea id="a2" class="inp" rows="5">${esc(a.body)}</textarea></div>
+  <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="a3" ${a.imp?'checked':''}> مهم (سنجاق شود)</label>`,()=>{
+    if(!v('a1').trim()||!v('a2').trim()){toast('عنوان و متن را وارد کنید');return false}
+    if(id)Object.assign(a,{title:v('a1').trim(),body:v('a2').trim(),imp:$('#a3').checked});
+    else DB.ann.push({id:uid(),title:v('a1').trim(),body:v('a2').trim(),imp:$('#a3').checked,date:today(),author:curName()});
+    save();render();toast('ذخیره شد');
+  });
+}
+function annDel(id){confirmDo('این اطلاعیه حذف شود؟',()=>{DB.ann=DB.ann.filter(x=>x.id!==id);save();render()})}
+
+/* تکالیف */
+const targets=t=>t.sid==='all'?DB.students:DB.students.filter(s=>s.id===t.sid);
+const myTasks=sid=>DB.tasks.filter(t=>t.sid==='all'||t.sid===sid).sort((a,b)=>a.due.localeCompare(b.due));
+PAGES.tasks=()=>{
+  if(S.role==='stu'){
+    const l=myTasks(S.sid);
+    return l.map(t=>{const d=!!t.done[S.sid],left=diff(today(),t.due);
+      return `<div class="item"><div class="task ${d?'done':''}"><input type="checkbox" ${d?'checked':''} onchange="toggleTask('${t.id}','${S.sid}')"><div style="flex:1"><h4>${esc(t.title)}</h4><p>${esc(t.desc)}</p><div class="meta"><span>📅 مهلت: ${fmt(t.due)}</span>${d?'<span class="bd ok">انجام شد</span>':left<0?'<span class="bd er">گذشته</span>':left<=1?'<span class="bd wa">'+leftTxt(left)+'</span>':'<span class="bd in">'+leftTxt(left)+'</span>'}</div></div></div></div>`}).join('')||'<div class="empty card">تکلیفی برای شما ثبت نشده 🎉</div>';
+  }
+  return `<div class="tb"><button class="btn" onclick="taskForm()">➕ تکلیف جدید</button></div>`+
+  [...DB.tasks].sort((a,b)=>b.due.localeCompare(a.due)).map(t=>{const tg=targets(t),dn=tg.filter(s=>t.done[s.id]).length;
+    return `<div class="item"><h4><span>${esc(t.title)}</span><span class="acts"><button class="btn g sm" onclick="taskDetail('${t.id}')">وضعیت</button><button class="btn d sm" onclick="taskDel('${t.id}')">حذف</button></span></h4><p>${esc(t.desc)}</p>
+    <div class="meta"><span>📅 مهلت: ${fmt(t.due)}</span><span>👥 ${t.sid==='all'?'همه':esc((stu(t.sid)||{name:'—'}).name)}</span><span class="bd in">${fa(dn)} از ${fa(tg.length)} انجام شد</span></div></div>`}).join('')||'<div class="empty card">تکلیفی ثبت نشده است</div>';
+};
+function toggleTask(tid,sid){const t=DB.tasks.find(x=>x.id===tid);if(t.done[sid])delete t.done[sid];else t.done[sid]=true;save();render()}
+function taskForm(){
+  modal('تکلیف جدید',`<div class="fg"><label>عنوان</label><input id="k1" class="inp"></div><div class="fg"><label>توضیحات</label><textarea id="k2" class="inp" rows="3"></textarea></div>
+  <div class="fg"><label>مخاطب</label><select id="k3" class="inp"><option value="all">همه دانش‌آموزان</option>${DB.students.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select></div>
+  <div class="fg"><label>مهلت تحویل</label>${jpick('kd',addDays(today(),3))}</div>`,()=>{
+    if(!v('k1').trim()){toast('عنوان را وارد کنید');return false}
+    const due=gj('kd');if(!due){toast('تاریخ نامعتبر است');return false}
+    DB.tasks.push({id:uid(),title:v('k1').trim(),desc:v('k2').trim(),sid:v('k3'),due,created:today(),done:{}});save();render();toast('تکلیف ثبت شد');
+  });
+}
+function taskDetail(id){
+  const t=DB.tasks.find(x=>x.id===id);
+  modal(esc(t.title),targets(t).map(s=>`<label class="item" style="display:flex;gap:10px;align-items:center;padding:9px 12px;margin-bottom:6px;cursor:pointer"><input type="checkbox" ${t.done[s.id]?'checked':''} onchange="toggleTaskQuiet('${t.id}','${s.id}')"><span style="flex:1">${esc(s.name)}</span></label>`).join('')||'<div class="empty">مخاطبی نیست</div>');
+}
+function toggleTaskQuiet(tid,sid){const t=DB.tasks.find(x=>x.id===tid);if(t.done[sid])delete t.done[sid];else t.done[sid]=true;save()}
+function taskDel(id){confirmDo('این تکلیف حذف شود؟',()=>{DB.tasks=DB.tasks.filter(x=>x.id!==id);save();render()})}
+
+/* حضور و غیاب */
+const ATT={present:['حاضر','a-p'],late:['تأخیر','a-l'],absent:['غایب','a-a']};
+function setAttDate(){const d=gj('ad');if(d){S.attDate=d;render()}}
+function setAtt(sid,k){const d=S.attDate;DB.att[d]=DB.att[d]||{};if(DB.att[d][sid]===k)delete DB.att[d][sid];else DB.att[d][sid]=k;save();render()}
+function markAll(){const d=S.attDate;DB.att[d]=DB.att[d]||{};DB.students.forEach(s=>{if(diff(today(),s.end)>=0&&!DB.att[d][s.id])DB.att[d][s.id]='present'});save();render();toast('ثبت شد')}
+PAGES.att=()=>{
+  if(S.role==='stu'){
+    const days=[];for(let i=0;i<30;i++)days.push(addDays(today(),-i));
+    const rec=days.filter(d=>DB.att[d]&&DB.att[d][S.sid]);const c=k=>rec.filter(d=>DB.att[d][S.sid]===k).length;
+    return `<div class="grid g4" style="margin-bottom:14px"><div class="card stat"><div class="ic">✅</div><div><b>${fa(c('present'))}</b><span>روز حضور (۳۰ روز اخیر)</span></div></div><div class="card stat"><div class="ic">⏱️</div><div><b>${fa(c('late'))}</b><span>تأخیر</span></div></div><div class="card stat"><div class="ic">❌</div><div><b>${fa(c('absent'))}</b><span>غیبت</span></div></div></div>
+    <div class="tw"><table style="min-width:0"><thead><tr><th>تاریخ</th><th>وضعیت</th></tr></thead><tbody>${rec.map(d=>{const k=DB.att[d][S.sid];return `<tr><td>${fmtW(d)}</td><td><span class="bd ${k==='present'?'ok':k==='late'?'wa':'er'}">${ATT[k][0]}</span></td></tr>`}).join('')||'<tr><td colspan="2" class="empty">سابقه‌ای ثبت نشده</td></tr>'}</tbody></table></div>`;
+  }
+  const d=S.attDate,r=DB.att[d]||{},cnt=k=>Object.values(r).filter(x=>x===k).length;
+  return `<div class="tb"><div style="min-width:280px">${jpick('ad',d,'setAttDate()')}</div><button class="btn g" onclick="S.attDate=today();render()">امروز</button><div style="flex:1"></div><button class="btn" onclick="markAll()">✔️ همه حاضر (فعال‌ها)</button></div>
+  <div class="card" style="margin-bottom:14px;display:flex;gap:18px;flex-wrap:wrap"><b>${fmtW(d)}</b><span class="bd ok">حاضر ${fa(cnt('present'))}</span><span class="bd wa">تأخیر ${fa(cnt('late'))}</span><span class="bd er">غایب ${fa(cnt('absent'))}</span></div>
+  <div class="tw"><table style="min-width:0"><thead><tr><th>میز</th><th>نام</th><th>وضعیت</th></tr></thead><tbody>${[...DB.students].sort((a,b)=>a.seat-b.seat).map(s=>`<tr><td>${fa(s.seat)}</td><td><b>${esc(s.name)}</b></td><td><div class="seg">${Object.keys(ATT).map(k=>`<button class="${r[s.id]===k?ATT[k][1]:''}" onclick="setAtt('${s.id}','${k}')">${ATT[k][0]}</button>`).join('')}</div></td></tr>`).join('')}</tbody></table></div>`;
+};
+
+/* مراقبین */
+PAGES.sups=()=>`<div class="tb"><span class="meta">هر مراقب با رمز مخصوص خود وارد پنل مراقب می‌شود.</span><div style="flex:1"></div><button class="btn" onclick="supForm()">➕ مراقب جدید</button></div>
+  <div class="tw"><table><thead><tr><th>نام</th><th>رمز ورود</th><th>آخرین ورود</th><th></th></tr></thead><tbody>${DB.sups.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td><span id="pw_${p.id}" dir="ltr">••••••</span> <button class="btn g sm" onclick="togglePw('${p.id}')">👁</button></td><td>${p.last?fdt(p.last):'—'}</td><td><div class="acts"><button class="btn g sm" onclick="supForm('${p.id}')">ویرایش</button><button class="btn d sm" onclick="supDel('${p.id}')">حذف</button></div></td></tr>`).join('')||'<tr><td colspan="4" class="empty">مراقبی ثبت نشده است</td></tr>'}</tbody></table></div>`;
+function togglePw(id){const e=document.getElementById('pw_'+id),p=DB.sups.find(x=>x.id===id);e.textContent=e.dataset.on?'••••••':p.pass;if(e.dataset.on)delete e.dataset.on;else e.dataset.on='1'}
+function supForm(id){
+  const p=id?DB.sups.find(x=>x.id===id):{name:'',pass:''};
+  modal(id?'ویرایش مراقب':'مراقب جدید',`<div class="fg"><label>نام مراقب</label><input id="p1" class="inp" value="${esc(p.name)}"></div>${passField('p2',p.pass,'رمز ورود')}`,()=>{
+    const name=v('p1').trim(),pass=v('p2').trim();
+    if(!name){toast('نام را وارد کنید');return false}
+    if(!checkPass(pass,'sup',id))return false;
+    logA((id?'ویرایش':'افزودن')+' مراقب: '+name);if(id)Object.assign(p,{name,pass});else DB.sups.push({id:'p'+uid(),name,pass});
+    save();render();toast('ذخیره شد');
+  });
+}
+function supDel(id){confirmDo('این مراقب حذف شود؟ دیگر نمی‌تواند وارد شود.',()=>{logA('حذف مراقب');DB.sups=DB.sups.filter(x=>x.id!==id);save();render();toast('حذف شد')})}
+function chgAdmin(){
+  const a=v('ap1').trim(),b=v('ap2').trim();
+  if(a!==b){toast('تکرار رمز یکسان نیست');return}
+  if(!checkPass(a,'admin'))return;
+  DB.admin.pass=a;logA('تغییر رمز مدیر');save();$('#ap1').value='';$('#ap2').value='';toast('رمز مدیر تغییر کرد');
+}
+
+/* تنظیمات */
+PAGES.settings=()=>`<div class="grid g2"><div class="card"><h3>🔐 تغییر رمز مدیر</h3><div class="fg"><label>رمز جدید</label><input id="ap1" type="password" class="inp" dir="ltr" autocomplete="new-password"></div><div class="fg"><label>تکرار رمز جدید</label><input id="ap2" type="password" class="inp" dir="ltr" autocomplete="new-password"></div><button class="btn" onclick="chgAdmin()">تغییر رمز</button></div><div class="card"><h3>🏷️ نام سالن</h3><div class="fg"><input id="hn" class="inp" value="${esc(DB.hall)}"></div><button class="btn" onclick="DB.hall=v('hn').trim()||DB.hall;save();render();toast('ذخیره شد')">ذخیره</button></div>
+  <div class="card"><h3>💾 پشتیبان‌گیری</h3><p class="meta" style="margin-bottom:12px">اطلاعات روی همین مرورگر ذخیره می‌شود. برای جابه‌جایی یا اطمینان، فایل پشتیبان تهیه کنید.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="exportDB()">دریافت پشتیبان</button><button class="btn g" onclick="document.getElementById('imp').click()">بازیابی از فایل</button><input id="imp" type="file" accept=".json" hidden onchange="importDB(this)"></div></div>
+  <div class="card"><h3>🧹 بازنشانی</h3><p class="meta" style="margin-bottom:12px">حذف همه دانش‌آموزان، تراکنش‌ها، تکالیف و حضور و غیاب.</p><button class="btn d" onclick="confirmDo('همه اطلاعات پاک شود؟ (رمز مدیر و مراقبین حفظ می‌شود) این کار برگشت‌پذیر نیست.',()=>{const a=DB.admin,sp=DB.sups,ai=DB.ai;DB=ensure(seed());DB.admin=a;DB.sups=sp;if(ai)DB.ai=ai;save();render();toast('پاک‌سازی شد')})">پاک‌سازی همه اطلاعات</button></div></div>`;
+function exportDB(){const a=document.createElement('a');const cp=JSON.parse(JSON.stringify(DB));if(cp.ai)cp.ai.key='';a.href=URL.createObjectURL(new Blob([JSON.stringify(cp,null,1)],{type:'application/json'}));a.download='marathon-backup-'+today()+'.json';a.click()}
+function importDB(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.students||!d.tx)throw 0;const ok=DB.ai&&DB.ai.key;DB=ensure(d);if(ok&&DB.ai&&!DB.ai.key)DB.ai.key=ok;save();render();toast('بازیابی شد')}catch(e){toast('فایل نامعتبر است')}};r.readAsText(f)}
+
+
+/* ===== v4: قابلیت‌های جدید ===== */
+try{document.documentElement.dataset.theme=localStorage.getItem('mar_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}
+function toggleTheme(){const d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';d.dataset.theme=n;try{localStorage.setItem('mar_theme',n)}catch(e){}}
+function logA(t){DB.log=DB.log||[];DB.log.unshift({t:Date.now(),by:curName(),text:t});if(DB.log.length>300)DB.log.length=300}
+const avatar=n=>{let h=0;for(const c of String(n))h=(h*31+c.charCodeAt(0))%360;return `<span class="av" style="background:linear-gradient(135deg,hsl(${h},70%,56%),hsl(${(h+45)%360},70%,44%))">${esc([...String(n).trim()][0]||'?')}</span>`};
+const hm=m=>m<60?fa(m)+' دقیقه':fa(Math.floor(m/60))+' ساعت'+(m%60?' و '+fa(m%60)+' دقیقه':'');
+const wd=d=>new Intl.DateTimeFormat('fa-IR',{weekday:'short',timeZone:'UTC'}).format(D(d));
+const md=t=>esc(t).replace(/^#{1,6}\s*/gm,'').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/^- /gm,'• ');
+
+/* --- اکسل / رسید / پیامک --- */
+function dl(name,rows){const c='﻿'+rows.map(r=>r.map(x=>'"'+String(x==null?'':x).replace(/"/g,'""')+'"').join(',')).join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/csv;charset=utf-8'}));a.download=name+'-'+today()+'.csv';a.click()}
+function exportStudents(){dl('students',[['نام','تلفن','پایه','میز','شروع اشتراک','پایان اشتراک','وضعیت','روز باقی‌مانده']].concat(DB.students.map(s=>{const i=subInfo(s);return [s.name,s.phone,s.grade,s.seat,fmt(s.start),fmt(s.end),i.txt,i.left]})))}
+function exportTx(){dl('transactions',[['تاریخ','دانش‌آموز','نوع','مبلغ (تومان)','روش','روز تمدید','توضیحات']].concat([...DB.tx].sort((a,b)=>a.date.localeCompare(b.date)).map(x=>[fmt(x.date),(stu(x.sid)||{name:'(حذف‌شده)'}).name,x.type,x.amount,x.method,x.days||0,x.desc||''])))}
+function printReceipt(id){
+  const x=DB.tx.find(t=>t.id===id);if(!x)return;const s=stu(x.sid)||{name:'—'};
+  const w=window.open('','_blank');if(!w){toast('مرورگر پنجره چاپ را مسدود کرد');return}
+  w.document.write(`<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><title>رسید</title><style>body{font-family:Tahoma,sans-serif;padding:30px;color:#222}.b{max-width:520px;margin:auto;border:2px solid #6d28d9;border-radius:18px;padding:26px}h1{text-align:center;color:#6d28d9;font-size:20px;margin:0}p.s{text-align:center;color:#777;margin:4px 0 20px}table{width:100%;border-collapse:collapse}td{padding:10px 4px;border-bottom:1px dashed #ccc}td:first-child{color:#777;width:35%}.t{font-size:22px;text-align:center;margin:20px 0;color:#6d28d9;font-weight:bold}.sg{display:flex;justify-content:space-between;margin-top:36px;color:#777;font-size:13px}</style></head><body><div class="b"><h1>${esc(DB.hall)}</h1><p class="s">رسید پرداخت · شماره ${esc(x.id.slice(-6).toUpperCase())}</p><table><tr><td>نام دانش‌آموز</td><td>${esc(s.name)}</td></tr><tr><td>تاریخ</td><td>${fmt(x.date)}</td></tr><tr><td>نوع</td><td>${esc(x.type)}</td></tr><tr><td>روش پرداخت</td><td>${esc(x.method)}</td></tr>${x.days?`<tr><td>مدت تمدید</td><td>${fa(x.days)} روز</td></tr>`:''}${x.desc?`<tr><td>توضیحات</td><td>${esc(x.desc)}</td></tr>`:''}</table><div class="t">${money(x.amount)}</div><div class="sg"><span>امضای مدیر</span><span>مهر سالن</span></div></div></body></html>`);
+  w.document.close();setTimeout(()=>w.print(),350);
+}
+function remind(id){
+  const s=stu(id),i=subInfo(s);
+  const t=`سلام ${s.name} عزیز 🌸\nاشتراک شما در ${DB.hall} ${i.left<0?'در تاریخ '+fmt(s.end)+' به پایان رسیده است':'تا تاریخ '+fmt(s.end)+' ('+leftTxt(i.left)+') اعتبار دارد'}.\nبرای تمدید به مدیر سالن مراجعه فرمایید.`;
+  window._rs=s.phone;
+  modal('📩 پیامک یادآوری',`<div class="fg"><label>متن پیام (قابل ویرایش)</label><textarea id="rm1" class="inp" rows="6">${esc(t)}</textarea></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn g" onclick="navigator.clipboard&&navigator.clipboard.writeText(v('rm1')).then(()=>toast('کپی شد'))">📋 کپی متن</button><a class="btn g" style="text-decoration:none" onclick="location.href='sms:'+window._rs+'?body='+encodeURIComponent(v('rm1'))">💬 باز کردن پیامک</a></div>`);
+}
+
+/* --- نمودارهای داشبورد --- */
+const _dash=PAGES.dash;
+PAGES.dash=()=>_dash()+(S.role==='stu'?'':dashCharts());
+function dashCharts(){
+  const t=today(),days=[...Array(7)].map((_,i)=>addDays(t,i-6)),st=DB.students;
+  const bars=(vals,lab)=>{const mx=Math.max(1,...vals);return `<div class="bars">${vals.map((v2,i)=>`<div class="bc"><span class="bv">${lab(v2)}</span><div class="bt"><i style="height:${Math.round(v2/mx*100)}%"></i></div><em>${wd(days[i])}</em></div>`).join('')}</div>`};
+  let rev='';
+  if(S.role==='admin'){const r=days.map(d=>DB.tx.filter(x=>x.date===d).reduce((a,x)=>a+x.amount,0));rev=`<div class="card"><h3>💰 درآمد ۷ روز اخیر</h3>${bars(r,v2=>v2?fa(Math.round(v2/1000)):'')}<div class="meta" style="margin-top:8px">ارقام به هزار تومان</div></div>`}
+  const att=days.map(d=>{const r=DB.att[d]||{};return st.length?Math.round(Object.values(r).filter(x=>x==='present'||x==='late').length/st.length*100):0});
+  const c={ok:0,wa:0,er:0};st.forEach(s=>c[subInfo(s).cls]++);
+  const n=st.length||1,a=c.ok/n*100,b=a+c.wa/n*100;
+  const grad=st.length?`conic-gradient(var(--ok) 0 ${a}%,var(--wa) ${a}% ${b}%,var(--er) ${b}% 100%)`:'var(--bd)';
+  return `<div class="grid g2" style="margin-top:14px">${rev}<div class="card"><h3>✅ درصد حضور ۷ روز اخیر</h3>${bars(att,v2=>v2?fa(v2)+'٪':'')}</div>
+  <div class="card"><h3>🎯 وضعیت اشتراک‌ها</h3><div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center"><div class="donut" style="background:${grad}"><b>${fa(st.length)}</b></div><div class="legend"><span><i style="background:var(--ok)"></i>فعال: ${fa(c.ok)}</span><span><i style="background:var(--wa)"></i>رو به پایان: ${fa(c.wa)}</span><span><i style="background:var(--er)"></i>منقضی: ${fa(c.er)}</span></div></div></div></div>`;
+}
+
+/* --- گزارش فعالیت --- */
+PAGES.log=()=>`<div class="tb"><span class="meta">آخرین ${fa((DB.log||[]).length)} رویداد</span><div style="flex:1"></div><button class="btn d" onclick="confirmDo('گزارش فعالیت پاک شود؟',()=>{DB.log=[];save();render()})">پاک‌کردن</button></div><div class="tw"><table style="min-width:0"><thead><tr><th>زمان</th><th>کاربر</th><th>رویداد</th></tr></thead><tbody>${(DB.log||[]).map(l=>`<tr><td>${fdt(l.t)}</td><td>${esc(l.by)}</td><td>${esc(l.text)}</td></tr>`).join('')||'<tr><td colspan="3" class="empty">رویدادی ثبت نشده</td></tr>'}</tbody></table></div>`;
+
+/* --- مطالعه و تمرکز --- */
+const sMin=(sid,d)=>((DB.study[sid]||{})[d])||0;
+function addStudy(sid,m,d){d=d||today();DB.study[sid]=DB.study[sid]||{};DB.study[sid][d]=(DB.study[sid][d]||0)+m;save()}
+function streak(sid){let n=0,d=today();if(!sMin(sid,d))d=addDays(d,-1);while(sMin(sid,d)>0){n++;d=addDays(d,-1)}return n}
+const FT={mode:'focus',len:25,left:1500,run:false,end:0,iv:null};
+const FM={focus:['تمرکز',25],short:['استراحت کوتاه',5],long:['استراحت بلند',15]};
+const ftFmt=l=>fa(pad(Math.floor(l/60)))+':'+fa(pad(l%60));
+function ftSet(m){clearInterval(FT.iv);FT.run=false;FT.mode=m;FT.len=FM[m][1];FT.left=FT.len*60;document.title='سالن مطالعه ماراتن';render()}
+function ftLen(n){if(FT.run)return;FT.len=n;FT.left=n*60;render()}
+function ftToggle(){
+  if(FT.run){FT.left=Math.max(0,Math.ceil((FT.end-Date.now())/1000));clearInterval(FT.iv);FT.run=false;document.title='سالن مطالعه ماراتن'}
+  else{FT.end=Date.now()+FT.left*1000;FT.run=true;FT.iv=setInterval(ftTick,500)}
+  render();
+}
+function ftReset(){clearInterval(FT.iv);FT.run=false;FT.left=FT.len*60;document.title='سالن مطالعه ماراتن';render()}
+function ftTick(){FT.left=Math.max(0,Math.ceil((FT.end-Date.now())/1000));ftPaint();if(FT.left<=0)ftDone()}
+function ftPaint(){const e=$('#ftime');if(e)e.firstChild.textContent=ftFmt(FT.left);const r=$('#fring');if(r)r.style.strokeDashoffset=653.45*(1-FT.left/(FT.len*60));document.title=ftFmt(FT.left)+' · ماراتن'}
+function beep(){try{const c=new (window.AudioContext||window.webkitAudioContext)();[0,.3,.6].forEach(t=>{const o=c.createOscillator(),g=c.createGain();o.frequency.value=880;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.25,c.currentTime+t);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+t+.22);o.start(c.currentTime+t);o.stop(c.currentTime+t+.24)})}catch(e){}}
+function ftDone(){
+  clearInterval(FT.iv);FT.run=false;beep();document.title='سالن مطالعه ماراتن';
+  if(FT.mode==='focus'&&S.role==='stu'){addStudy(S.sid,FT.len);toast('🎉 '+fa(FT.len)+' دقیقه مطالعه ثبت شد')}else toast('⏰ زمان تمام شد');
+  FT.left=FT.len*60;render();
+}
+function ftManual(){modal('ثبت دستی مطالعه',`<div class="fg"><label>مدت مطالعه (دقیقه)</label><input id="mm1" type="number" min="1" max="600" class="inp" placeholder="مثلاً ۶۰"></div>`,()=>{const m=Math.round(+v('mm1'));if(!(m>0&&m<=600)){toast('عدد بین ۱ تا ۶۰۰ وارد کنید');return false}addStudy(S.sid,m);render();toast('ثبت شد')})}
+function weekRank(sid){const wk=[...Array(7)].map((_,i)=>addDays(today(),-i));const r=DB.students.map(s=>({id:s.id,w:wk.reduce((a,d)=>a+sMin(s.id,d),0)})).sort((a,b)=>b.w-a.w);return{rank:r.findIndex(x=>x.id===sid)+1,n:r.length,w:(r.find(x=>x.id===sid)||{}).w||0}}
+PAGES.focus=()=>{
+  const sid=S.sid,t=today(),days=[...Array(7)].map((_,i)=>addDays(t,i-6)),vals=days.map(d=>sMin(sid,d)),mx=Math.max(30,...vals),wr=weekRank(sid);
+  const off=653.45*(1-FT.left/(FT.len*60));
+  const card=(i,n,l)=>`<div class="card stat"><div class="ic">${i}</div><div><b style="font-size:17px">${n}</b><span>${l}</span></div></div>`;
+  return `<div class="grid g2"><div class="card" style="text-align:center"><div class="chipr">${Object.keys(FM).map(k=>`<button class="${FT.mode===k?'on':''}" onclick="ftSet('${k}')">${FM[k][0]}</button>`).join('')}</div>
+  <div class="ring"><svg width="240" height="240" viewBox="0 0 240 240"><defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8b5cf6"/><stop offset="1" stop-color="#ec4899"/></linearGradient></defs><circle cx="120" cy="120" r="104" fill="none" stroke="var(--soft)" stroke-width="14"/><circle id="fring" cx="120" cy="120" r="104" fill="none" stroke="url(#fg)" stroke-width="14" stroke-linecap="round" stroke-dasharray="653.45" stroke-dashoffset="${off}"/></svg><div class="t" id="ftime">${ftFmt(FT.left)}<small>${FM[FT.mode][0]}${FT.run?' · در حال اجرا':''}</small></div></div>
+  ${FT.mode==='focus'&&!FT.run?`<div class="chipr">${[25,45,50,60,90].map(n=>`<button class="${FT.len===n?'on':''}" onclick="ftLen(${n})">${fa(n)} دقیقه</button>`).join('')}</div>`:'<div style="height:14px"></div>'}
+  <div style="display:flex;gap:10px;justify-content:center"><button class="btn" style="min-width:130px" onclick="ftToggle()">${FT.run?'⏸ توقف':'▶ شروع'}</button><button class="btn g" onclick="ftReset()">↺ بازنشانی</button></div>
+  <p class="meta" style="justify-content:center;margin-top:14px">پس از اتمام هر جلسه تمرکز، زمان مطالعه خودکار ثبت می‌شود.</p></div>
+  <div style="display:grid;gap:14px;align-content:start"><div class="grid g4" style="grid-template-columns:1fr 1fr">${card('📖',hm(sMin(sid,t)),'مطالعه امروز')}${card('🗓️',hm(wr.w),'مطالعه ۷ روز اخیر')}${card('🔥',fa(streak(sid))+' روز','روزهای پیاپی')}${card('🏅',wr.w?'رتبه '+fa(wr.rank)+' از '+fa(wr.n):'—','رتبه هفتگی در سالن')}</div>
+  <div class="card"><h3>📊 مطالعه ۷ روز اخیر (دقیقه)</h3><div class="bars">${vals.map((m,i)=>`<div class="bc"><span class="bv">${m?fa(m):''}</span><div class="bt"><i style="height:${Math.round(m/mx*100)}%"></i></div><em>${wd(days[i])}</em></div>`).join('')}</div><button class="btn g sm" style="margin-top:10px" onclick="ftManual()">➕ ثبت دستی زمان مطالعه</button></div></div></div>`;
+};
+PAGES.study=()=>{
+  const t=today(),wk=[...Array(7)].map((_,i)=>addDays(t,-i)),mo=[...Array(30)].map((_,i)=>addDays(t,-i));
+  const sum=(sid,ds)=>ds.reduce((a,d)=>a+sMin(sid,d),0);
+  const rows=DB.students.map(s=>({s,td:sMin(s.id,t),w:sum(s.id,wk),m:sum(s.id,mo),k:streak(s.id)})).sort((a,b)=>b.w-a.w);
+  const tot=rows.reduce((a,r)=>a+r.w,0),mx=Math.max(1,...rows.map(r=>r.w));
+  const stat=(i,n,l)=>`<div class="card stat"><div class="ic">${i}</div><div><b style="font-size:17px">${n}</b><span>${l}</span></div></div>`;
+  return `<div class="grid g4" style="margin-bottom:14px">${stat('⏱️',hm(tot),'مجموع مطالعه ۷ روز اخیر سالن')}${stat('👩‍🎓',fa(rows.filter(r=>r.td>0).length),'دانش‌آموز فعال امروز')}${stat('📚',hm(rows.length?Math.round(tot/rows.length):0),'میانگین هفتگی هر نفر')}</div>
+  <div class="tw"><table><thead><tr><th>#</th><th>نام</th><th>امروز</th><th>۷ روز اخیر</th><th>۳۰ روز اخیر</th><th>روزهای پیاپی</th></tr></thead><tbody>${rows.map((r,i)=>`<tr><td class="medal">${r.w>0&&i<3?['🥇','🥈','🥉'][i]:fa(i+1)}</td><td><div class="nm">${avatar(r.s.name)}<b>${esc(r.s.name)}</b></div></td><td>${r.td?hm(r.td):'—'}</td><td style="min-width:170px">${hm(r.w)}<div class="bar" style="background:var(--soft);height:6px;margin-top:5px"><i style="width:${Math.round(r.w/mx*100)}%;background:linear-gradient(90deg,var(--p),var(--p2))"></i></div></td><td>${r.m?hm(r.m):'—'}</td><td>${r.k?'🔥 '+fa(r.k):'—'}</td></tr>`).join('')||'<tr><td colspan="6" class="empty">دانش‌آموزی ثبت نشده</td></tr>'}</tbody></table></div><p class="meta" style="margin-top:10px">زمان‌ها از تایمر تمرکز دانش‌آموزان و ثبت دستی آن‌ها جمع می‌شود.</p>`;
+};
+
+/* --- داشبورد دانش‌آموز: جمله روز و میانبر همیار --- */
+const QUOTES=['قدم‌های کوچکِ هر روز، از یک شبِ مطالعه‌ی طولانی ارزشمندترند.','امروز فقط کافی‌ست از دیروزت بهتر باشی.','تمرکز یعنی همین یک ساعتِ حاضر؛ بقیه‌اش را بعداً می‌بینیم.','استراحتِ به‌موقع هم بخشی از مطالعه است.','اشتباه کردن یعنی در حال یادگرفتنی.','برنامه‌ی ساده‌ای که انجام شود، بهتر از برنامه‌ی عالیِ روی کاغذ است.','سخت‌ترین قسمت، شروع کردن است؛ فقط ۵ دقیقه شروع کن.','هر تست غلط، یک نقطه‌ضعفِ کشف‌شده است.','خودت را با دیگران نه، با دیروزِ خودت مقایسه کن.','آب بخور، نفس عمیق بکش، ادامه بده.'];
+const _sd=studentDash;
+studentDash=()=>{
+  const q=QUOTES[((diff('2026-01-01',today())%QUOTES.length)+QUOTES.length)%QUOTES.length];
+  const ask=['برنامه مطالعه امروز','برای تمرکز چه کنم؟','استرس امتحان دارم','روش حفظ کردن بهتر'];
+  return _sd()+`<div class="grid g2" style="margin-top:14px"><div class="card" style="background:linear-gradient(135deg,var(--soft),var(--card))"><h3>✨ جمله امروز</h3><p style="font-size:15px;line-height:2">${q}</p><div class="meta" style="margin-top:8px">⏱️ مطالعه امروز: <b>${hm(sMin(S.sid,today()))}</b> · <a href="#" onclick="go('focus');return false" style="color:var(--p)">شروع تایمر تمرکز</a></div></div>
+  <div class="card"><h3>🤖 از همیار ماراتن بپرس</h3><div class="chipr" style="justify-content:flex-start;margin:0">${ask.map(a=>`<button onclick="aiAsk('${a}')">${a}</button>`).join('')}</div></div></div>`;
+};
+
+/* ===== همیار ماراتن (هوش مصنوعی) ===== */
+const AI_DEF={mode:'local',provider:'openai',base:'https://api.openai.com/v1',key:'',model:'',stuOn:true,limit:20};
+const aiCfg=()=>Object.assign({},AI_DEF,DB.ai||{});
+const aiOnlineOn=()=>{const c=aiCfg();return c.mode==='online'&&!!c.key&&(S.role!=='stu'||c.stuOn)};
+const AI_SYS='تو «همیار ماراتن» هستی، دستیار فارسی‌زبان و مهربانِ سالن مطالعه دخترانه ماراتن. به دانش‌آموزان در برنامه‌ریزی مطالعه، روش‌های یادگیری، تمرکز، مدیریت زمان و استرس کمک کن و در صورت نیاز درس را ساده توضیح بده. پاسخ‌ها کوتاه، کاربردی و محترمانه باشند (حداکثر حدود ۱۵۰ کلمه مگر لازم باشد) و به فارسی بنویس. درباره رمزها و اطلاعات مالی افراد چیزی نمی‌دانی. اگر نشانه‌ای از ناراحتی شدید یا بحران دیدی، با مهربانی پیشنهاد بده با خانواده، مشاور یا مراقب سالن صحبت کند.';
+let CHAT=[],AIBUSY=false;
+function aiContext(){
+  const t=today();let c='تاریخ امروز: '+fmtW(t)+'. ';
+  if(S.role==='stu'){const s=stu(S.sid);if(s){const i=subInfo(s),p=myTasks(s.id).filter(x=>!x.done[s.id]).map(x=>x.title+' (مهلت '+fmt(x.due)+')');
+    c+=`کاربر یک دانش‌آموز دختر در سالن است. پایه: ${s.grade}. اشتراک: ${i.left<0?'منقضی شده':fa(i.left)+' روز مانده'}. تکالیف انجام‌نشده: ${p.join('، ')||'ندارد'}. مطالعه امروز: ${sMin(s.id,t)} دقیقه.`}}
+  else{const st=DB.students,c1={ok:0,wa:0,er:0};st.forEach(s=>c1[subInfo(s).cls]++);c+=`کاربر ${ROLE_NAME[S.role]} سالن است. تعداد دانش‌آموزان: ${st.length}، اشتراک فعال: ${c1.ok}، رو به پایان: ${c1.wa}، منقضی: ${c1.er}.`}
+  return c;
+}
+function aiLocal(q){
+  q=q.replace(/ي/g,'ی').replace(/ك/g,'ک');const has=(...w)=>w.some(x=>q.includes(x));const t=today();
+  if(S.role==='stu'){
+    const s=stu(S.sid);if(s){const i=subInfo(s);
+      if(has('اشتراک','تمدید','چند روز','انقضا','تاریخ پایان'))return i.left<0?`اشتراکت ${fa(-i.left)} روز پیش (${fmt(s.end)}) تمام شده 😕\nبرای تمدید به مدیر سالن مراجعه کن.`:`اشتراکت تا **${fmt(s.end)}** معتبره؛ یعنی **${i.left===0?'امروز آخرین روزه':fa(i.left)+' روز'}** دیگه وقت داری.${i.left<=7?'\nنزدیک تمام شدنه، برای تمدید به مدیر سالن سر بزن 😉':''}`;
+      if(has('تکلیف')){const p=myTasks(s.id).filter(x=>!x.done[s.id]);return p.length?`تکالیف انجام‌نشده‌ات:\n`+p.map(x=>`- **${x.title}** — مهلت: ${fmt(x.due)} (${leftTxt(diff(t,x.due))})`).join('\n'):'همه تکالیفت انجام شده 👏 آفرین!'}
+      if(has('حضور','غیبت','تاخیر','تأخیر')){const rec=[...Array(30)].map((_,k)=>addDays(t,-k)).filter(d=>DB.att[d]&&DB.att[d][s.id]),c=k=>rec.filter(d=>DB.att[d][s.id]===k).length;return `در ۳۰ روز اخیر: **${fa(c('present'))}** روز حضور، **${fa(c('late'))}** تأخیر و **${fa(c('absent'))}** غیبت ثبت شده.`}
+      if(has('اطلاعیه')){const a=[...DB.ann].sort((x,y)=>y.date.localeCompare(x.date)).slice(0,3);return a.length?'آخرین اطلاعیه‌ها:\n'+a.map(x=>`- **${x.title}** (${fmt(x.date)})`).join('\n'):'فعلاً اطلاعیه‌ای ثبت نشده.'}
+      if(has('پرداخت','تراکنش','شهریه')){const x=[...DB.tx].filter(z=>z.sid===s.id).sort((a,b)=>b.date.localeCompare(a.date))[0];return x?`آخرین پرداختت: **${money(x.amount)}** در ${fmt(x.date)}. فهرست کامل در بخش «تراکنش‌ها» هست.`:'هنوز پرداختی برای تو ثبت نشده.'}
+      if(has('مطالعه امروز','امروز چقدر')){return `امروز تا الان **${hm(sMin(s.id,t))}** مطالعه ثبت کردی.`}
+    }
+  }else{
+    const st=DB.students;
+    if(has('منقضی','رو به پایان','تمدید','اشتراک')){const w=st.filter(x=>diff(t,x.end)<=7).sort((a,b)=>a.end.localeCompare(b.end));return w.length?'اشتراک‌های نیازمند پیگیری:\n'+w.map(x=>`- **${x.name}** — ${fmt(x.end)} (${leftTxt(diff(t,x.end))})`).join('\n'):'همه اشتراک‌ها در وضعیت مناسب هستند 🎉'}
+    if(has('غایب','غیبت')){const r=DB.att[t]||{},a=st.filter(x=>r[x.id]==='absent'),u=st.filter(x=>!r[x.id]);return `غایب‌های امروز: ${a.length?a.map(x=>x.name).join('، '):'کسی ثبت نشده'}.\nهنوز ثبت نشده: ${fa(u.length)} نفر.`}
+    if(has('حاضر','حضور')){const r=DB.att[t]||{};return `امروز **${fa(Object.values(r).filter(x=>x==='present'||x==='late').length)}** نفر از ${fa(st.length)} نفر حاضر ثبت شده‌اند.`}
+    if(has('درآمد','تراکنش','پول')&&S.role==='admin'){const a=DB.tx.filter(x=>x.date===t).reduce((s2,x)=>s2+x.amount,0),b=DB.tx.filter(x=>diff(x.date,t)>=0&&diff(x.date,t)<=30).reduce((s2,x)=>s2+x.amount,0);return `درآمد امروز: **${money(a)}**\nدرآمد ۳۰ روز اخیر: **${money(b)}**`}
+    if(has('تعداد','چند نفر','دانش‌آموز'))return `در مجموع **${fa(st.length)}** دانش‌آموز ثبت شده؛ ${fa(st.filter(x=>diff(t,x.end)>=0).length)} نفر اشتراک فعال دارند.`;
+  }
+  if(has('سلام','درود','وقت بخیر'))return 'سلام! 😊 چطور می‌تونم کمکت کنم؟';
+  if(has('مرسی','ممنون','تشکر'))return 'خواهش می‌کنم 🌸 هر وقت سؤالی داشتی بپرس.';
+  if(has('کی هستی','اسمت','چیکار'))return 'من «همیار ماراتن» هستم؛ دستیار سالن مطالعه. درباره برنامه‌ریزی، تمرکز، استرس و اطلاعات سالن کمک می‌کنم.';
+  if(has('استرس','اضطراب','نگران','ترس')){return '**برای کم‌کردن استرس:**\n- سه بار تنفس ۴-۴-۶ انجام بده: ۴ ثانیه دم، ۴ ثانیه نگه‌داشتن، ۶ ثانیه بازدم\n- کارها را به تکه‌های کوچک تقسیم کن و فقط تکه بعدی را ببین\n- ۷ تا ۸ ساعت خواب و کمی حرکت یا پیاده‌روی فراموش نشود\n- نگرانی‌ات را روی کاغذ بنویس تا از ذهنت بیرون بیاید\n\nاگر احساس می‌کنی خیلی سنگین شده، حتماً با خانواده، مشاور یا مراقب سالن صحبت کن 💜'}
+  if(has('تمرکز','حواس','حواسم')){return '**راه‌های افزایش تمرکز:**\n- گوشی را دور از دست بگذار یا روی حالت پرواز ببر\n- روش پومودورو: ۲۵ دقیقه مطالعه + ۵ دقیقه استراحت (تایمرش در بخش «تمرکز» هست)\n- در هر بازه فقط یک کار انجام بده\n- حواس‌پرتی‌هایی که به ذهنت می‌رسد را روی کاغذ یادداشت کن و بعداً بررسی کن\n- میز مرتب و کمی آب کنار دستت باشد'}
+  if(has('خواب','بیدار','خسته')&&!has('انگیزه')){return '**درباره خواب:**\n- ۷ تا ۸ ساعت خواب برای حافظه و تمرکز ضروری است\n- ساعت خواب و بیداری ثابت داشته باش\n- عصرها کافئین نخور و یک ساعت قبل از خواب از صفحه‌ها فاصله بگیر\n- شب امتحان به‌جای بیداری، مرور سبک و خواب کافی بهتر است'}
+  if(has('حفظ','یاد بگیرم','یادگیری','فراموش','مرور')){return '**روش‌های یادگیری ماندگار:**\n- تکرار فاصله‌دار: مرور بعد از ۱ روز، ۳ روز و ۷ روز\n- مطلب را با زبان خودت برای یک نفر توضیح بده\n- فلش‌کارت و تست‌زنی، موثرتر از فقط خواندن دوباره است\n- بعد از هر درس، بدون نگاه‌کردن، نکات اصلی را بنویس'}
+  if(has('امتحان','آزمون','کنکور','نمره')){return '**برای آمادگی آزمون:**\n- هفته‌ها را به درس و فصل تقسیم کن و ساعت مرور مشخص بگذار\n- هر هفته یک آزمون آزمایشی بده و **اشتباهات** را تحلیل کن\n- از درس‌های ضعیف شروع کن، ولی درس‌های قوی را هم مرور کن\n- ۲ روز آخر فقط جمع‌بندی و خواب کافی'}
+  if(has('انگیزه','حوصله','نمیخوام','نمی‌خوام','تنبل')){return '**وقتی انگیزه نداری:**\n- قانون ۵ دقیقه: فقط ۵ دقیقه شروع کن، معمولاً ادامه پیدا می‌کند\n- هدف امروز را کوچک و مشخص کن\n- بعد از هر بلوک مطالعه به خودت یک پاداش کوچک بده\n- یادت باشد پیشرفت کوچک هم پیشرفت است 💪'}
+  if(has('برنامه','مطالعه','درس','چطور بخونم','چگونه')){
+    let extra='';if(S.role==='stu'){const s=stu(S.sid),p=s?myTasks(s.id).filter(x=>!x.done[s.id]):[];if(p.length)extra='\n\nتکالیف بازت: '+p.slice(0,3).map(x=>x.title).join('، ')+' — اول سراغ همین‌ها برو.'}
+    return '**پیشنهاد برنامه امروز 🗓️**\n- **بلوک ۱ (۵۰ دقیقه):** سخت‌ترین درس، وقتی ذهنت تازه است\n- **بلوک ۲ (۵۰ دقیقه):** تست یا حل تمرین\n- **بلوک ۳ (۴۰ دقیقه):** مرور و خلاصه‌نویسی\n- بین بلوک‌ها ۱۰ دقیقه استراحت\n- ۱۰ دقیقه آخر روز: مرور سریع آنچه خواندی'+extra+'\n\nتایمر پومودورو در بخش «تمرکز» آماده است.'}
+  return 'این سؤال را دقیق متوجه نشدم 🙈 می‌توانی درباره **برنامه مطالعه، تمرکز، استرس، روش یادگیری، اشتراک، تکالیف یا حضور و غیاب** بپرسی.\n\nبرای پاسخ‌های آزادتر، مدیر می‌تواند حالت آنلاین هوش مصنوعی را در «تنظیمات» فعال کند.';
+}
+function aiHist(){const h=[];CHAT.forEach(m=>{const r=m.r==='u'?'user':'assistant';if(h.length&&h[h.length-1].role===r)h[h.length-1].content+='\n'+m.t;else h.push({role:r,content:m.t})});let x=h.slice(-12);while(x.length&&x[0].role!=='user')x.shift();return x}
+async function aiOnline(c,hist){
+  const sys=AI_SYS+'\n\n'+aiContext(),ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),45000);
+  const model=c.model||(c.provider==='anthropic'?'claude-sonnet-5-5':'gpt-4o-mini');
+  try{
+    let r,j;
+    if(c.provider==='anthropic'){
+      r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',signal:ctl.signal,headers:{'Content-Type':'application/json','x-api-key':c.key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model,max_tokens:900,system:sys,messages:hist})});
+      j=await r.json();if(!r.ok)throw new Error((j.error&&j.error.message)||('خطا '+r.status));
+      return (j.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('')||'(پاسخ خالی)';
+    }
+    r=await fetch((c.base||AI_DEF.base).replace(/\/$/,'')+'/chat/completions',{method:'POST',signal:ctl.signal,headers:{'Content-Type':'application/json','Authorization':'Bearer '+c.key},body:JSON.stringify({model,messages:[{role:'system',content:sys}].concat(hist)})});
+    j=await r.json();if(!r.ok)throw new Error((j.error&&(j.error.message||j.error))||('خطا '+r.status));
+    return j.choices[0].message.content||'(پاسخ خالی)';
+  }catch(e){throw new Error(e.name==='AbortError'?'پاسخی دریافت نشد (زمان تمام شد)':e instanceof TypeError?'عدم دسترسی به سرویس (اینترنت، آدرس یا محدودیت CORS)':e.message)}
+  finally{clearTimeout(to)}
+}
+function aiQuota(){const lim=+aiCfg().limit||20,u=DB.aiUse=DB.aiUse||{},d=today(),o=(u[S.sid]&&u[S.sid].d===d)?u[S.sid]:(u[S.sid]={d,n:0});if(o.n>=lim)return false;o.n++;save();return true}
+async function aiSend(text){
+  text=(text||'').trim();if(!text||AIBUSY)return;
+  CHAT.push({r:'u',t:text});AIBUSY=true;aiRender(true);
+  let ans,note='';
+  if(aiOnlineOn()){
+    if(S.role==='stu'&&!aiQuota()){ans=aiLocal(text);note='سقف پیام‌های هوشمند امروز تمام شده؛ پاسخ از حالت محلی داده شد.'}
+    else try{ans=await aiOnline(aiCfg(),aiHist())}catch(e){ans=aiLocal(text);note='⚠️ '+e.message+' — پاسخ محلی نمایش داده شد.'}
+  }else{await new Promise(r=>setTimeout(r,350));ans=aiLocal(text)}
+  CHAT.push({r:'a',t:ans,note});AIBUSY=false;aiRender();
+}
+function aiRender(typing){
+  const box=$('#aimsgs');if(!box)return;
+  const nm=S.role==='stu'?(curName().split(' ')[0]):curName();
+  let h=`<div class="m a">سلام ${esc(nm)} 👋\nمن «همیار ماراتن» هستم؛ ${S.role==='stu'?'در برنامه‌ریزی مطالعه، تمرکز، مدیریت استرس و اطلاعات اشتراک و تکالیفت کمکت می‌کنم.':'درباره وضعیت اشتراک‌ها، حضور و غیاب و آمار سالن جواب می‌دهم.'} هر سؤالی داری بپرس!</div>`;
+  CHAT.forEach(m=>{h+=`<div class="m ${m.r}">${md(m.t)}${m.note?`<div class="note">${esc(m.note)}</div>`:''}</div>`});
+  if(typing)h+='<div class="m a"><span class="dots"><i></i><i></i><i></i></span></div>';
+  box.innerHTML=h;box.scrollTop=box.scrollHeight;
+  const st=$('#aist');if(st)st.textContent=aiOnlineOn()?'● متصل به هوش مصنوعی':'● حالت هوشمند محلی';
+}
+function aiOpen(on){const p=$('#aipn');if(!p)return;p.classList.toggle('on',on);if(on){aiRender();setTimeout(()=>{const i=$('#aiin');i&&i.focus()},50)}}
+function aiToggle(){const p=$('#aipn');aiOpen(!(p&&p.classList.contains('on')))}
+function aiAsk(t){aiOpen(true);aiSend(t)}
+function aiMount(){
+  const el=$('#ai');if(!el)return;
+  if(!S.role){el.innerHTML='';el.dataset.k='';return}
+  const k=S.role+(S.sid||S.uid||'');if(el.dataset.k===k)return;
+  el.dataset.k=k;CHAT=[];
+  const chips=S.role==='stu'?['برنامه مطالعه امروز','تکالیف من چیه؟','اشتراکم چند روز مونده؟','برای تمرکز چه کنم؟','استرس امتحان دارم']:['کدام اشتراک‌ها رو به پایانه؟','امروز چند نفر حاضرن؟','امروز کی غایبه؟'].concat(S.role==='admin'?['درآمد امروز چقدره؟']:[]);
+  el.innerHTML=`<button class="fab" onclick="aiToggle()" title="همیار ماراتن">🤖</button><div class="pn" id="aipn"><div class="ph"><span style="font-size:26px">🤖</span><div><b>همیار ماراتن</b><small id="aist"></small></div><button onclick="CHAT=[];aiRender()" title="گفتگوی جدید">🗑</button><button onclick="aiOpen(false)">✕</button></div><div id="aimsgs"></div><div class="chips">${chips.map(c=>`<button onclick="aiSend(this.textContent)">${c}</button>`).join('')}</div><form onsubmit="event.preventDefault();var i=document.getElementById('aiin'),t=i.value;i.value='';aiSend(t)"><input id="aiin" autocomplete="off" placeholder="سؤالت را بنویس..."><button>➤</button></form></div>`;
+  aiRender();
+}
+function aiSave(){
+  const c={mode:v('ai1'),provider:v('ai2'),base:v('ai3').trim()||AI_DEF.base,model:v('ai4').trim(),key:v('ai5').trim(),stuOn:$('#ai6').checked,limit:Math.max(1,+v('ai7')||20)};
+  if(c.mode==='online'&&!c.key){toast('برای حالت آنلاین کلید API لازم است');return false}
+  DB.ai=c;logA('تنظیمات همیار ماراتن ذخیره شد');save();aiRender();toast('ذخیره شد');return true;
+}
+async function aiTest(){
+  if(!aiSave())return;toast('در حال تست اتصال...');
+  const c=Object.assign({},aiCfg(),{mode:'online'});
+  try{const r=await aiOnline(c,[{role:'user',content:'فقط بنویس: اتصال برقرار است'}]);toast('✅ '+r.slice(0,60))}catch(e){toast('❌ '+e.message)}
+}
+const aiCard=()=>{const c=aiCfg();return `<div class="card" style="grid-column:1/-1"><h3>🤖 همیار ماراتن (هوش مصنوعی)</h3>
+<p class="meta" style="margin-bottom:12px;display:block">«حالت محلی» رایگان است و بدون اینترنت درباره اشتراک، تکالیف، حضور و نکات مطالعه جواب می‌دهد. «حالت آنلاین» به یک مدل هوش مصنوعی (مثل ChatGPT یا Claude) وصل می‌شود و آزادانه پاسخ می‌دهد؛ برای آن به کلید API خودتان نیاز است و هزینه‌اش با صاحب کلید است. فقط خلاصه آماری (بدون رمز، تلفن و مبالغ) همراه سؤال ارسال می‌شود. ⚠️ کلید در همین مرورگر ذخیره می‌شود؛ اگر دانش‌آموزان از همین دستگاه استفاده می‌کنند، فرد کاردان می‌تواند آن را ببیند. در فایل پشتیبان کلید ذخیره نمی‌شود.</p>
+<div class="row2"><div class="fg"><label>حالت</label><select id="ai1" class="inp"><option value="local" ${c.mode==='local'?'selected':''}>هوشمند محلی (رایگان)</option><option value="online" ${c.mode==='online'?'selected':''}>آنلاین (مدل هوش مصنوعی)</option></select></div>
+<div class="fg"><label>سرویس</label><select id="ai2" class="inp"><option value="openai" ${c.provider==='openai'?'selected':''}>سازگار با OpenAI (OpenAI، OpenRouter و ...)</option><option value="anthropic" ${c.provider==='anthropic'?'selected':''}>Anthropic (Claude)</option></select></div></div>
+<div class="row2"><div class="fg"><label>آدرس API (فقط سازگار با OpenAI)</label><input id="ai3" class="inp" dir="ltr" value="${esc(c.base)}"></div><div class="fg"><label>نام مدل (خالی = پیش‌فرض)</label><input id="ai4" class="inp" dir="ltr" value="${esc(c.model)}" placeholder="gpt-4o-mini / claude-sonnet-5-5"></div></div>
+<div class="fg"><label>کلید API</label><input id="ai5" type="password" class="inp" dir="ltr" autocomplete="new-password" value="${esc(c.key)}"></div>
+<div class="row2"><div class="fg"><label style="display:flex;gap:8px;align-items:center;margin-top:24px"><input type="checkbox" id="ai6" ${c.stuOn?'checked':''}> دانش‌آموزان هم از حالت آنلاین استفاده کنند</label></div><div class="fg"><label>سقف پیام آنلاین روزانه هر دانش‌آموز</label><input id="ai7" type="number" min="1" class="inp" value="${c.limit}"></div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" onclick="aiSave()">ذخیره</button><button class="btn g" onclick="aiTest()">🔌 ذخیره و تست اتصال</button></div></div>`};
+const _st=PAGES.settings;PAGES.settings=()=>_st().replace(/<\/div>\s*$/,aiCard()+'</div>');
+
+render();
+document.addEventListener('DOMContentLoaded',()=>{});
+const _r=render;render=function(){_r();if(S.role&&S.page==='students')stRows();aiMount()};
+if(S.role&&S.page==='students')stRows();
+aiMount();
+</script>
+</body>
+</html>
